@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="33cm" height="11cm" viewBox="98 262 659 219" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="99.775" y="364" width="96.95" height="115"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 3; stroke-dasharray: 20; stroke: #000000" x="99.775" y="364" width="96.95" height="115"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="148.25" y="417.4">
+      <tspan x="148.25" y="417.4">Content</tspan>
+      <tspan x="148.25" y="433.4">Preparation</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="264.85" y="363.6" width="118.85" height="115"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" x="264.85" y="363.6" width="118.85" height="115"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="324.275" y="417">
+      <tspan x="324.275" y="417">HTTP Server</tspan>
+      <tspan x="324.275" y="433">with segments</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 3; stroke-dasharray: 20; stroke: #7f7f7f" x="440.8" y="364.6" width="96.95" height="115"/>
+    <text style="fill: #7f7f7f;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="489.275" y="418">
+      <tspan x="489.275" y="418">HTTP</tspan>
+      <tspan x="489.275" y="434">Cache</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="538.075" y="264.5" width="116.85" height="55"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" x="538.075" y="264.5" width="116.85" height="55"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="596.5" y="287.9">
+      <tspan x="596.5" y="287.9">Media</tspan>
+      <tspan x="596.5" y="303.9">representation</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="676.8" y="363.6" width="78.2" height="115"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" x="676.8" y="363.6" width="78.2" height="115"/>
+    <text style="fill: #000000;text-anchor:middle;font-size:12.7998;font-family:sanserif;font-style:normal;font-weight:normal" x="715.9" y="425">
+      <tspan x="715.9" y="425">Client</tspan>
+    </text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke-dasharray: 20; stroke: #000000" points="148.25,357.292 148.25,292 531.367,292 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" points="143.25,350.646 148.25,360.646 153.25,350.646 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" points="524.721,297 534.721,292 524.721,287 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke-dasharray: 20; stroke: #000000" points="203.433,421.5 230.788,421.5 230.788,421.1 258.142,421.1 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" points="210.079,416.5 200.079,421.5 210.079,426.5 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" points="251.496,426.1 261.496,421.1 251.496,416.1 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke-dasharray: 20; stroke: #000000" points="596.5,326.208 596.5,392.35 670.092,392.35 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" points="601.5,332.854 596.5,322.854 591.5,332.854 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" points="663.446,397.35 673.446,392.35 663.446,387.35 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" points="390.408,421.1 670.092,421.1 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" points="397.054,416.1 387.054,421.1 397.054,426.1 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 3; stroke: #000000" points="663.446,426.1 673.446,421.1 663.446,416.1 "/>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 11; stroke: #7f7f7f" x1="638" y1="375" x2="604" y2="445"/>
+</svg>

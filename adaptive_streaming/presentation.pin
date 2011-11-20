@@ -1,0 +1,448 @@
+#! env pinpoint
+#[bg.jp]
+[font=Ubuntu 40px]
+[duration=120.000000]
+[text-align=left]
+
+-- [bcndevcon.jpg] [text-align=center] [duration=10.000000] [no-markup]
+
+Adaptive Video Streaming
+
+Reaching all devices and networks
+
+Andoni Morales Alastruey @ylatuya
+
+#Una nueva técnica de streaming de video que permite ofrecer
+#distintas calidades de para que los clientes elijan
+#la que mejor les convenga según las condiciones de red o el
+#dispositivo en el que se encuentren
+-- [bcndevcon.jpg] [text-align=center] [duration=10.000000] [no-markup]
+
+Free Software advocate
+
+LongoMatch, OssBuild, GStreamer
+
+And Flumotion, where I'm currently working
+
+-- [structure.jpg] [fill]
+
+• Introduction to video streaming
+
+• The challenges of adaptive video streaming
+
+• The big players: HLS (Apple) Smooth (Microsoft) Dynamic (Adobe)
+
+• The new comer: DASH
+
+• Adaptive streaming with HTML5
+
+# Pequeña introducción sobre video streaming
+# Hablaré de las técnicas que se emplean para hacer adaptive streamin
+# Finalmente presentaré las tencologías que hay hoy en día
+# The big players: HLS (Apple) Smooth (Microsoft) Dynamic (Adobe)
+# The new comer: DASH
+
+-- [cat_running.jpg] [fill] [bottom] [text-align=center] [duration=20.000000] [font=Ubuntu 40px]
+
+Like everything on the Internet...
+It started with a cat
+
+We started sharing funny pictures....
+
+-- [nyancat.webm] [bottom] [duration=10.000000]
+
+And that's how video started too...
+
+-- [old_net.png] [font=Ubuntu 30px]
+
+• A few years ago the ecosystem of video streaming was already very big:
+
+  ✔ Several networks
+
+  ✔ Several operating system
+
+  ✔ Several codecs
+
+  ✔ Several browsers
+
+• Flash and H264 consolidate themselves very quickly.
+
+• The downlink of the client was the bottleneck
+
+-- [new_net.png]
+
+Nowadays the ecosystem is even bigger and more sparse
+
+ • Different networks require different bitrates
+
+ • Different devices:
+
+   ✔ Need to encode with different picture sizes
+
+   ✔ Hardware limitations for encoding profiles
+
+-- [projector.jpg] [fill]
+
+<b>Video encoding: basic principles</b>
+
+  Video encoders compress information in several ways:
+
+    • Chroma subsampling: The eye is more sensitive to brightness than to the colors
+
+# When the macroblocks are transformed from the spatial domain to the frequency domain
+# and than quantized, the energy concentrates around the DC and most of the coefficients
+# 0 being able to use a RLE to compress,
+    • Transform coding and quantization: energy is concentrated in a few DCT coefficients
+
+    • Intra coding: redundancy whithin a frame
+
+    • Inter coding: redundancy between frames
+
+-- [ipb_frames.png] [bottom]
+
+  • Types of encoded frames:
+
+   ✔ Keyframes: do not depend and other frames
+
+   ✔ Predicted frames: decoded used past or future frames
+
+-- [matrix-19-thusnelda-telemetry.webm] [bottom] [text-align=center]
+
+Keyframes vs predicted frames
+
+-- [keyframe.png] [bottom]
+
+  • Keyframes do not depend on past or future frames
+
+  • An encoded video stream can be decoded starting from a keyframe
+
+-- [mixer.jpg] [fill] [text-align=left]
+
+But video needs to be muxed with audio
+
+  • Pure streamable formats: MPEG-TS, OGG
+
+  • Non-streamable formats: AVI, MP4
+
+  • Mixed formats: ASF, FLV, WebM, FMP4
+
+-- [Muxers.png]
+
+-- [adaptive.jpg] [fill]
+<b> Why HTTP adaptive streaming?</b>
+
+  • Different devices and different networks require different encodings:
+    ✔ Bitrate
+    ✔ Size
+    ✔ Profiles
+
+#Many cool technologies don't make it because the industry decides in the end
+  • HTTP is not the optimal solution but it's already there:
+    ✔ Infrastructure already deployed by CDNs
+    ✔ Chunks are cache-friendly
+    ✔ Scalable
+
+  • Client-centric approach:
+    ✔ The adaptation logic is in the client side
+    ✔ The client knows which profiles it supports
+    ✔ And it has the best view of the network conditions
+
+  • Problems:
+    ✔ Latency: clients need to pre-fetch at least 3 fragments
+
+-- [sync.png] [bottom] [text-align=center]
+  The stream is chunked in segments of 2~10 seconds using the keyframes boundaries
+  All stream must be aligned for a smooth transition
+
+
+-- [adaptive_streaming.png] [bottom] [text-align=center]
+Architecture
+
+-- [adaptive.jpg] [fill]
+
+•  For On Demand:
+  ✔ Chunks are not needed and using them produce a huge amount of files
+  ✔ Byte Range requests have caching and flexibility advantages
+
+•  For Live:
+  ✔ Chunks are unavoidable
+  ✔ Manifest updates
+
+# HTTP live streaming intro
+--  [apple.jpg] [duration=120.000000] [fill]
+<b> HTTP Live Streaming (HLS) </b>:
+
+  •  Developed by Apple for QuickTime and IPhone originally:
+    ✔ All IOS devices (IPod, IPhone and IPad)
+    ✔ Android >= 3.0
+    ✔ Desktop players: vlc, all GStreamer players
+    ✔ Browsers: WebKit Gtk browsers using GStreamer's backend
+
+  • Documented as an RFC Internet-Draft:
+    ✔ 7 revisions
+    ✔ Version 4 of the protocol
+
+  •Format:
+    ✔ MPEG-TS as container
+    ✔ Codecs: AAC/MP3 for audio and H264 for video
+    ✔ Could also be used with Webm/VP8/Vorbis
+    ✔ Fragments of ~10 seconds
+
+# Media presentation
+-- [apple.jpg] [duration=60.000000] [fill]
+<b> Media representation: </b>
+
+  • <b>m3u8</b> playlists with extra tags
+  • A variant playlist with the different presentations available:
+    ✔ Bitrate
+    ✔ Size
+    ✔ Codec profile
+  • A stream playlist for each quality
+  • Live has some differences with VOD:
+    ✔ The playlist is updated with each new fragment
+    ✔ The playlist have a sliding window allowing DVR
+
+# Variant playlist and stream playlist
+-- [apple.jpg] [duration=30.000000] [font=Monospace 100px] [fill]
+\#EXTM3U
+\#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=500000
+mid_video_index.M3U8
+\#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=800000
+wifi_video_index.M3U8
+\#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=3000000, CODECS="avc1.4d001e,mp4a.40.5"
+h264main_heaac_index.M3U8
+\#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=64000, CODECS="mp4a.40.5"
+aacaudio_index.M3U8
+
+
+
+\#EXTM3U
+\#EXT-X-TARGETDURATION:8
+\#EXT-X-MEDIA-SEQUENCE:2680
+
+\#EXTINF:8,
+https://priv.example.com/fileSequence2680.ts
+\#EXTINF:8,
+\https://priv.example.com/fileSequence2681.ts
+\#EXTINF:8,
+https://priv.example.com/fileSequence2682.ts
+
+
+# Features
+-- [apple.jpg] [duration=60.000000] [fill]
+<b> HLS Features: </b>
+
+  • Chunked or not chunked (added in version 4)
+  • Stream encryption with AES
+  • Closed Caption
+  • Multilingual support with several audio tracks (added in version 4)
+# Several urls for the same stream
+  • Failover protection
+  • Easy to deploy
+  • Easy to produce HLS content (simple playlists and MPEG-TS)
+
+-- [bunny.png] [text-align=center]
+Smooth Streaming
+
+-- [bunny.png]
+
+<b> Smooth Streaming: </b>
+
+  •  Developed by Microsoft:
+    ✔ Microsoft provides a sample player (requires Silverlight)
+    ✔ Custom players can be developed using the open media player framework
+    ✔ Windows phone
+    ✔ Used for the first for on-demand video of the 2008 Summer Olympics
+
+  • Standardized as <b>Protected Interoperable File Format</b> (PIFF):
+    ✔ Extension of the ISO Base Media File Format (MPEG4 part 12, aka MP4)
+    ✔ Adds DRM support and some restrictions to the original standard
+    ✔ Released under the Microsoft Community Promise
+
+-- [smooth_mp4.jpg] [bottom]
+  • Format
+    ✔ Fragmented MP4
+    ✔ H264/VC-1 for video and AAC/MP3 for audio
+    ✔ Use am XML Manifest for the media representaion
+    ✔ Not chunked for on-demand
+    ✔ Live is tricky
+
+-- [bunny.png] [no-markup]
+
+<?xml version="1.0"?>
+<SmoothStreamingMedia MajorVersion="2" MinorVersion="0" DVRWindowLength="200000000" Duration="0" IsLive="TRUE" LookAheadFragmentCount="2" TimeScale="10000000">
+  <StreamIndex Chunks="0" SubType="" TimeScale="10000000" Type="audio" Url="QualityLevels({bitrate})/Fragments(audio={start time})">
+    <QualityLevel AudioTag="255" Bitrate="48000" BitsPerSample="16" Channels="2" CodecPrivateData="FF000[..]1210" FourCC="AACL" Index="0" PacketSize="1" SamplingRate="44100" />
+    <c t="1989390549420" />
+    <c t="1989430719941" />
+    <c t="1989470890463" />
+    <c t="1989511060984" />
+    <c t="1989551231506" />
+    <c t="1989591402028" />
+  </StreamIndex>
+  <StreamIndex Chunks="0" SubType="" TimeScale="10000000" Type="video" Url="QualityLevels({bitrate})/Fragments(video={start time})">
+    <QualityLevel Bitrate="800000" CodecPrivateData="00000001674280[..]48" FourCC="AVC1" Index="0" MaxHeight="320" MaxWidth="480" />
+    <QualityLevel Bitrate="200000" CodecPrivateData="00000001674280[..]48" FourCC="AVC1" Index="1" MaxHeight="320" MaxWidth="480" />
+    <QualityLevel Bitrate="400000" CodecPrivateData="00000001674280[..]48" FourCC="AVC1" Index="2" MaxHeight="320" MaxWidth="480" />
+    <c t="1989339256666" />
+    <c t="1989379256666" />
+    <c t="1989419256666" />
+    <c t="1989459256666" />
+    <c t="1989499256666" />
+    <c t="1989539256666" />
+    <c t="1989579256666" />
+  </StreamIndex>
+</SmoothStreamingMedia>
+
+-- [bunny.png]
+<b> Features: </b>
+
+  • The manifest is downloaded only once, event for live
+  • Multilingual audio
+  • Supports DRM
+
+<b> Cons: </b>
+  • Hard to produce live content
+  • Not widely supported (Silverlight and Windows Phone)
+
+# Adobe dynamic streaming
+-- [zen.jpg] [fill]
+<b> Adobe Dynamic HTTP streaming </b>
+
+  • Developed by Adobe
+  • Uses Fragmented MP4, like Smooth Streaming
+  • Players can be developed using Open Source Media framework
+
+  • Format:
+
+   ✔ Chunked
+   ✔ Uses several files to present and access the media:
+    ✔ F4F: Holds the media
+    ✔ F4M: Media description file (codec, resolution)
+    ✔ F4X: Fragments location
+    ✔ .bootsrap: bootstrap info for each fragments
+    ✔ .drmmeta: DRM metadata
+
+-- [zen.jpg] [fill] [no-markup]
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://ns.adobe.com/f4m/1.0">
+<id>myvideo</id>
+<duration>253</duration>
+<mimeType>video/x-flv</mimeType>
+<streamType>recorded</streamType>
+<baseURL>http://example.com"</baseURL>
+<drmAdditionalHeader url="http://mydrmserver.com/mydrmadditionalheader"/>
+<bootstrapInfo profile="named" url="/mybootstrapinfo"/>
+<media url="/myvideo/low" bitrate="408" width="640" height="480"/>
+<media url="/myvideo/medium" bitrate="908" width="800" height="600"/>
+<media url="/myvideo/high" bitrate="1708" width="1920" height="1080"/>
+</manifest>
+
+-- [caos.jpg] [text-align=center] [fill]
+
+Too many propietary solutions for the same thing!
+
+A standard is needed
+
+# DASH
+-- [dash.jpg]
+
+DASH to the rescue!
+
+-- [flexible.jpg] [fill]
+
+<b> DASH: Dynamic Adaptive Streaming over HTTP </b>
+
+
+  • MPEG DASH ISO/IEC 23001-6 is now the master specification
+
+  • Draft International Standard in January 2011 (v2)
+
+  • Expected to become an International Standard this month!
+
+
+-- [flexible.jpg] [fill]
+
+  • It's flexible, very flexible
+
+  • Reuse of existing technologies
+
+  • Audio/video codec agnostic: MPEG-TS, FMP4, WEBM, ...
+
+  • Complex and simple at the same time
+
+  • Provides simple interoperability points (profiles like basic on-demand)
+
+  • Trick modes
+
+  • 3D, multi-view, scalable video
+
+  • Protected content
+
+--[segments.png] [bottom] [text-align=center] [font=Ubuntu 20px]
+
+The Media Presentation Description (MPD): contains metadata
+required by a DASH Client to construct appropriate HTTP-URLs
+and access Segments and to provide the streaming service to the user.
+
+# supports adaptive streaming, mashups, ad insertion,
+# streaming services, DVR, video editors (constraint editing)
+-- [html5.png] [duration=2.0]
+
+Media Source API:
+  • Support adaptive streaming natively in HTML5
+  • An extension to HTMLMediaElement that allows to pipe data into audio and video
+  • MD parsing, buffering, bitrate switching strategies should not be done by the browser
+  • Demo available for Chrome presented in the OVC12
+
+interface HTMLMediaElement : HTMLElement {
+    ...
+    // URL passed to src attribute to enable the media source logic.
+    readonly attribute DOMString webkitMediaSourceURL;
+
+    // Appends media to to the source.
+    void webkitSourceAppend(in Uint8Array data) raises (DOMException);
+}
+
+-- [links.jpg] [fill] [font=Ubuntu 50px]
+  Questions?
+
+-- [thank_you.jpg] [fill] [text-align=center] [bottom] [font=Ubuntu 30px]
+
+Andoni Morales Alastruey <ylatuya@gmail.com>
+Barcelona Developers Conference 2011
+Special thanks to Xavi and all the people that made this conference possible :)
+
+# References
+-- [links.jpg] [fill]
+
+Acknowledgment: Mark Watson, Christian Timmerer and Christopher Müller
+from which I based the DASH part of this presentation
+
+https://github.com/ylatuya/Talks
+
+
+HLS:
+http://developer.apple.com/library/ios/#documentation/networkinginternet/conceptual/streamingmediaguide/Introduction/Introduction.html
+http://tools.ietf.org/html/draft-pantos-http-live-streaming-07
+http://www.thekuroko.com/http-dynamic-streaming-getting-started/
+
+Smooth streaming:
+http://alexzambelli.com/blog/2009/02/10/smooth-streaming-architecture/
+http://go.microsoft.com/?linkid=9682897
+
+Dash:
+http://openetherpad.org/ovc11-standards-for-http-adaptive-streaming
+http://www.slideshare.net/christian.timmerer/dynamic-adaptive-streaming-over-http-dash
+
+Images:
+http://www.flickr.com/photos/platinum/8499300/
+http://www.flickr.com/photos/bibigeek/6198549521/
+http://www.flickr.com/photos/21561428@N03/4991300232/
+http://www.flickr.com/photos/elrentaplats/2006927827/
+http://www.flickr.com/photos/joost-ijmuiden/4757944724/
+http://www.flickr.com/photos/kevincochran/4024384525/
+http://www.flickr.com/photos/davidlafourcade/5716913940/
+http://www.flickr.com/photos/josefstuefer/5982121/
+http://www.erg.abdn.ac.uk/future-net/digital-video/images/mpeg-ts.gif
+http://img.tomshardware.com/us/1999/09/24/video_guide_part_3/ipb_frames.gif
