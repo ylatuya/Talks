@@ -1,0 +1,529 @@
+#! env pinpoint
+[background.png]
+[font=Ubuntu 20]
+[duration=5.000000]
+[text-align=left]
+[fill]
+
+-- [text-align=left] [duration=10.000000] [no-markup]
+
+GStreamer SDK
+
+Andoni Morales Alastruey (ylatuya)
+Hacking @ LongoMatch, Flumotion, GStreamer, Cerbero
+Working @ Fluendo
+
+--
+
+The <b>GStreamer SDK</b> is a joint initiative from <b>Fluendo and Collabora</b>
+to provide a <b>stable and tested</b> distribution of GStreamer for the most
+common platforms (<b>Linux, Windows and OS X</b>).
+
+• The first release of the SDK, <b>Amazon</b> 2012.5, the end of May.
+
+• A new bugfix release for Amazon is scheduled within the next weeks.
+
+• The next release will be named <b>Brahmputra</b>, with support for <b>Android</b>.
+
+--
+
+Topics:
+
+  • Goals of the SDK
+
+  • SDK's components
+
+  • Developments done for the SDK
+
+  • Building the SDK
+
+  • Packaging the SDK
+
+  • Integration with the native OS development tools (VS, XCode)
+
+  • cerbero: the build system used to build and package the SDK
+
+-- [text-align=center] [font=Ubuntu 40px]
+
+1. Goals of the SDK
+
+--
+
+<b>Break the barrier for new developers and companies </b>
+
+  - GStreamer is a huge project and it's sometimes hard to get started with
+
+  - The current documentation is very good, but it can be overhelming for
+    developers starting with GStreamer.
+
+  - It's hard to evaluate GStreamer as a solution for a project in a quick way.
+
+  ✔ A new <b>documentation</b> site where GStreamer is described in a more generic
+    way for newcomers.
+
+  ✔ Create a new set of <b>tutorials to introduce progressively</b> new developers in
+    the GStreamer concepts.
+
+--
+
+<b>Promote GStreamer as a multi-platform multimedia framework</b>
+
+  - GStreamer is the best multimedia framework on Linux (isn't it?), but still not
+    very popular in other platforms.
+
+  - It's a cross-platform framework, but we don't provide installers/packages for
+    Windows and OS X
+
+  - Developing and distributing GStreamer apps is rather tricky on Windows and OS X
+    (no package managers like yum or apt-get to resolve deps ☹ )
+
+  ✔ Provide <b>installers with pre-compiled binaries</b>.
+
+  ✔ Provide a <b>complete development environment</b> to write GStreamer apps in all the
+    platforms that integrates with the system development tools.
+
+  ✔ Make it <b>easier to distribute</b> GStreamer apps.
+
+--
+
+<b>Stable distribution of GStreamer with the same features in all the platforms</b>
+
+  - It's hard to debug issues when there are several platforms with several distributions,
+    each one using different versions.
+
+  - Upgrades are usually very problematic and requires many hours in testing.
+
+  ✔ Using the <b>same software versions</b> across platforms makes apps more robust.
+
+  ✔ <b>Smooth upgrades</b> trying to reduce regressions as much as possible with a testing
+    suite like insanity.
+    (Easier in the 0.10 branch now that it is reducing its activity :) )
+
+  ✔ Give some love the <b>system plugins</b>:
+      • Navigation interface force-aspect-ratio implemented in all the video sinks.
+      • Audio passthrough working in all audio sinks.
+      • osxvideosink working from the command line.
+
+--
+
+Supported Platforms:                                
+
+  •  Linux:
+        •  Debian
+        •  Ubuntu
+        •  Fedora
+
+  •  Windows:
+        •  XP
+        •  Vista
+        •  Windows 7
+
+  •  OS X:
+        •  Snow Leopard
+        •  Lion
+        •  Mountain Lion ?¿
+
+  •  Android (next release)
+
+-- [text-align=center] [font=Ubuntu 40]
+
+2. SDK components
+
+--
+
+• The first version of the SDK is focused on <b>multimedia playback</b>
+
+• Using the <b>0.10</b> branch as it's more mature and stable than the upcoming 1.0:
+
+  - Local and network sources to support local and remote media playback
+
+  - Transformation elements, decoders and demuxers
+
+  - Audio and video sinks
+
+• Also provide a GUI toolkit, language bindings and a showcase app:
+
+  - Gtk+ (2.0)
+
+  - Python bindings
+
+  - Snappy
+
+--
+
+The SDK is modularized in several packages:
+
+  • A single big bundle doesn't fit everybody's use cases.
+
+  • Application developers can decide which parts of the distribution
+    to include.
+
+  • Allows to separate conflictive plugins (licenses or patents)
+
+GStreamer is <b>split in packages by functionality</b> rather than the current
+ -base -good -bad and -ugly, as for bundling GStreamer into an applications
+it's more useful.
+
+It was hard to split everything but that's the best we could do...
+
+--
+
+Packages installed by default:
+
+  • base-system: Base system libraries such as glib, libtiff, libz
+  • gstreamer-core: GStreamer core (core libraries and utils)
+  • gstreamer-codecs: Decoding and demuxer plugins
+  • gstreamer-playback: Playback elements (eg: playbin, uridecobin)
+  • gstreamer-effects: Effects, instrumentation and misc plugins
+                       (eg: deinterlace, videobox, alphcolor)
+  • gstreamer-networking: Networking plugins (eg: souphttpsrc, rtspsrc)
+  • gstreamer-capture: Capture plugins (eg: v4l2src, ksvideosrc, osxaudiosrc)
+  • gstreamer-visualizers: Visualization plugins (eg: goom)
+  • gstreamer-editing: Editing plugins (gnonlin, ges)
+  • gstreamer-python: Python bindings
+  • gstreamer-clutter: Clutter support
+  • gtk+:  Gtk+-2.0
+  • gtk-python: Gtk+ python bindings
+  • gobject-python: pygobject
+  • snappy: Snappy video player
+
+--
+
+Optional packages:
+  • gstreamer-codecs-restricted: Codecs plugins with potential patents issues
+                                 (eg: a52dec mpeg2dec)
+  • gstreamer-codecs-gpl: Codecs plugins that depends on GPL libraries
+  • gstreamer-networking-restricted: Networking plugins with potential patents
+                                     issues (eg: mmssrc)
+  • gstreamer-dvd: DVD plugins
+  • gstreamer-ffmpeg: FFmpeg plugin
+
+
+-- [text-align=center] [font=Ubuntu 40]
+
+3. Developments for the SDK
+
+--
+
+  • Testing Framework:
+    • Insanity
+    • Collect sample for the testig framework
+    • Manual and automated test suites for:
+      • Local media: container/codecs discovery, seeking, trick modes,
+                     frame stepping, deinterlacing
+      • Live streaming: RTP/RTSP, HTTP, HLS
+      • DVD
+      • Container and codecs: video decoders, audio decoders, subtitles
+  • Video base clases:
+    • Finish the video base and move them to Base
+    • Port x264enc, mpeg2dec, gst-ffmpeg, png and jpeg plugins
+  • Audio sinks:
+    • direcsoundsink: fixed audio passthrough
+    • osxaudiosink:  audio passthrough support
+  • Video sinks.
+    • d3dvideosink: stabilization
+    • osxvideosink: navigation, make it work with gst-launch, force-aspect-ratio
+  • HLS demuxer
+  • Open Source Fluendo's ADPCM and iLBC plugins
+  • Improved support for static builds
+
+-- [text-align=center] [font=Ubuntu 40]
+
+4. Building the SDK
+
+--
+
+Building a fully featured GStreamer is very similar to assemble a mini Linux distribution.
+
+We are currently building almost <b>100 projects</b>! And the list is growing.
+
+The first big question was, <b>what build system should we use?</b>
+
+--
+
+Maintaining several build systems, one for each platforms, was completely out of scope.
+
+The main requirement was a cross-platform build system.
+
+This leaves out very good build systems like:
+  •  jhbuild
+  •  macports
+  •  homebrew
+
+The perfect candidate:
+  •  Entropy Wave's build system (also used to build a SDK for GStreamer)
+
+The main problem is that it's shell script, so it would be harder to extend
+or the add new features, like the creation of native packages.
+
+--
+
+And cerbero was born...
+
+  • Written in python
+
+  • Cross-platform: aware of host and target platform, architecture and distribution
+
+  • Support for cross-compilation (either to a different arch or to a different platform)
+
+  • Projects are described with recipes files, one per project and platform
+
+  • Recipes are python classes, so it's easy to extend and adapt them to the buggy build systems.
+
+  • Support for creating native packages
+
+  • Source backends: git, svn, tarballs (backends are very easy to add)
+
+  • Build backends: autotools, automake, CMake
+
+  • Bootstrapping
+
+  • More in the last section...
+
+--
+
+System requirements:
+
+  • A toolchain:
+    • compiler (GCC)
+    • binutils
+
+  • Build systems:
+    • autotools
+    • cmake
+
+  • libtool
+
+  • pkg-config
+
+  • python
+
+  • git
+
+How do we get them for each platform?
+
+-- [tux_nude_beach.jpg] [text-align=center]
+
+Linux is just awesome!
+
+Seriously... all distributions have a decent package manager that can let us
+install everything.
+
+-- [mac1984.jpg] [text-align=center]
+
+OS X is not that bad.
+
+It comes with a good toolchain and most of the required software.
+
+We still need to install automake, autoconf, aclocal, libtool and pkg-config with macports,
+but just because they are not yet built by cerbero.
+
+-- [mac1984.jpg]
+
+In the first release, we provided 2 separate builds for i386 and x86_64,
+but we will provided <b>universal builds</b> in the next release.
+
+The support for universal builds in cerbero is hackish.
+The sources are configured twice in separate build tree, for the 2 target archs
+and then merged into universal mach-o binaries using a tool named <b>lipo</b>
+We should avoid this for projects that supports universal builds.
+
+--  [Blue-Screen-Of-Death.jpg] [text-align=center]
+
+Windows is a nightmare...
+
+--
+
+We need everything:
+
+  •  a shell: msys shell installed with mingw-get (provides also auto* and libtool)
+  •  python
+  •  git
+  •  gcc toolchain: built with the great MinGW-w64 project
+  •  pkg-config
+
+To make it easier the toolchain is part of cerbero's bootstrap and only
+mingw-get python and git must be installed manually
+
+Builds are 10x~20x slower than on linux:
+  •  no native support for 'fork', emulated by msys which makes configure scripts very slow
+  •  make does a lot of string replacements
+
+Speed up builds:
+  •  using a unique cache file for all the builds (./configure --cache-file=/path/to/cache)
+  •  ccache
+
+Cross-compilation is much faster, but the SDK can't be completely cross-compiled as some bugs
+in wine affects wix, the packaging tool used for Windows.
+
+--
+
+Getting a working toolchain was the hardest thing.
+MinGW-w64 doesn't provide a pre-built toolchain with a stable GCC version so had to build it.
+
+The build process is now integrated with cerbero:
+  1) Build a cross-compiler toolchain for windows (32 and 64 bits), mingw-w64 and binutils
+  2) With this new toolchain, cross-compile a native windows toolchain, mingw-w64 and binutils
+
+There is still a problem with the GCC builds on Windows, they don't provide debug symbols
+for VS.
+
+In the future we will also provide builds with Microsoft's compiler.
+
+-- [text-align=center] [font=Ubuntu 40]
+
+4. Packaging
+
+--
+
+•  The SDK is packaged using the native packaging tools available for the target platform/distribution
+
+•  The packages mentioned in the functional split of the SDK conform the minimal packaging unit.
+
+•  Each package is plit in a runtime and a development version.
+
+•  Meta packages groups packages to create the final installer
+
+--
+
+On Linux:
+
+  •  Debian/Ubuntu: dpkg-buildpackage
+  •  Redhat/Fedora: rpmbuild
+
+  Packages -> rpm/deb regular packages
+  Meta Packages -> rpm/deb metapackage
+
+
+On OS X:
+
+  •  PackageMaker: a tool to create installer packages (.pkg)
+
+  Packages -> installer package
+  Meta Packages -> Also called Meta package (installer with options)
+
+
+On Windows:
+
+  •  WiX: Windows Installer XML toolset
+
+  Packages -> Merge Modules (.msm)
+  Meta Packages -> MSI installer (.msi)
+
+--
+
+5. Integration with the system tools
+
+--
+
+One of the goals of the SDK was to provide a complete development environment
+that could be used with the system tools, being XCode in OS X and VS in Windows.
+
+People that comes from the Linux world are very comfortable within a shell,
+but I don't see a pure Windows developer using MinGW.
+
+--
+
+Linux is awesome...again :)
+
+•  We have a shell
+•  We have the autotools! (yes, we love them...)
+•  We have libtool! (and yes.. we also love it)
+•  We have pkg-config
+
+A shell script named gst-sdk-shell sets the right environment to target the SDK,
+and that's it :)
+
+--
+
+Mac OS X uses a thing called Frameworks, that you can drag and drop into XCode
+
+A Framework bundle is a directory with the following structure:
+
+  Commands -> Versions/Current/Commands   (link to bin/)
+  Headers -> Versions/Current/Headers     (directory with the unversioned headers)
+  Libraries -> Versions/Current/Libraries (link to lib/)
+  GStreamer -> Versions/Current/GStreamer (link to the Framework library)
+  Versions/Current -> Version/0.10        (link to the prefix)
+  Resources -> Versions/Current/Resources
+
+When a Framework is added to a project in XCode:
+ •  'Libraries' is added to the search path for libraries
+ •  The Framework library, in our example 'GStreamer', is linked.
+ •  Headers is added to headers search path, but they must be prefixed with GStreamer
+    #include <GStreamer/gst/gst.h>
+
+--
+
+Problems:
+  1) Includes must be prefixed with Framework name (#include <GStreamer/gst/gst.h>)
+  2) We can't link Headers to include/ because of versioned headers paths
+     include/gstreamer-0.10/gstreamer, and headers in other paths lib/
+  3) GStreamer can't be a link to lib/libgstreamer-0.10.dylib as only this lib
+     is linked
+
+Solutions:
+  1) Include manually /Library/Frameworks/GStreamer.framework/Headers to the headers search path
+  2) Use pkgconfig to find the include paths an copy this dirs to Headers
+     when we create the development package
+     $ cp include/gstreamer-0.10 Headers/ (Headers/gstreamer/gst.h)
+     $ cp lib/glib-2.0/include Headers/   (Headers/glibconfig.h)
+  3) Create a library named GStreamer using the cool --rexport_library
+     $ gcc -dynamiclib -o GStreamer -Wl,-reexport_library lib/ibgstreamer-0.10.dylib lib/libglib-2.0.dylib
+     A tool named FrameworkLib in cerbero takes as input a list of .pc libs, looks for the libraries
+     to link with pkg-config and create the wrapper library.
+--
+
+To link the DLL's with VS on Windows an import library (.lib) is needed.
+A post build step in cerbero takes care of that, so for each shared library a .lib is created
+
+We wanted to make it very easy to use any of the available libraries of the SDK from VS,
+like it's done on Linux with pkg-config and the -libs and --cflags options.
+
+VS projects can include property sheets that can sets the paths for headers and libraries
+and the libraries to link.
+
+-- [VisualStudioPkgConfig.png]
+
+--
+
+cerbero includes a tool that parses .pc files and creates an equivalent .props file
+that can be easily included in VS.
+
+-- [no-markup]
+
+<?xml version="1.0" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ImportGroup Label="PropertySheets">
+		<Import Condition="$(glib_2_0Imported)!=true" Project="glib-2.0.props"/>
+		<Import Condition="$(gobject_2_0Imported)!=true" Project="gobject-2.0.props"/>
+		<Import Condition="$(gmodule_no_export_2_0Imported)!=true" Project="gmodule-no-export-2.0.props"/>
+		<Import Condition="$(gthread_2_0Imported)!=true" Project="gthread-2.0.props"/>
+		<Import Condition="$(libxml_2_0Imported)!=true" Project="libxml-2.0.props"/>
+		<Import Condition="$(CommonImported)!=true" Project="Common.props"/>
+	</ImportGroup>
+	<PropertyGroup Label="UserMacros"/>
+	<PropertyGroup>
+		<gstreamer_0_10Imported>true</gstreamer_0_10Imported>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<AdditionalIncludeDirectories>$(GSTREAMER_SDK_ROOT_X86)\\include\\gstreamer-0.10;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ClCompile>
+		<Link>
+			<AdditionalLibraryDirectories>;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<AdditionalDependencies>gstreamer-0.10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+		</Link>
+	</ItemDefinitionGroup>
+	<ItemGroup/>
+</Project>
+
+--
+
+And there is also a wizard for GStreamer projects :)
+
+--
+
+
+6. Cerbero: the build system for the GStreamer SDK
+--
