@@ -3,15 +3,13 @@
 [font=Ubuntu 20]
 [duration=5.000000]
 [text-align=left]
-[fill]
-
--- [text-align=left] [duration=10.000000] [no-markup]
+[fit]
+-- [text-align=center] [duration=10.000000] [no-markup]
 
 GStreamer SDK
 
 Andoni Morales Alastruey (ylatuya)
-Hacking @ LongoMatch, Flumotion, GStreamer, Cerbero
-Working @ Fluendo
+GStreamer Conference, 27th of August 2012 - San Diego
 
 --
 
@@ -19,7 +17,7 @@ The <b>GStreamer SDK</b> is a joint initiative from <b>Fluendo and Collabora</b>
 to provide a <b>stable and tested</b> distribution of GStreamer for the most
 common platforms (<b>Linux, Windows and OS X</b>).
 
-• The first release of the SDK, <b>Amazon</b> 2012.5, the end of May.
+• The first release of the SDK, <b>Amazon</b> 2012.5, was done the end of May.
 
 • A new bugfix release for Amazon is scheduled within the next weeks.
 
@@ -49,11 +47,11 @@ Topics:
 
 --
 
-<b>Break the barrier for new developers and companies </b>
+<b>Lower the barrier to entry for new GStreamer adopters</b>
 
   - GStreamer is a huge project and it's sometimes hard to get started with
 
-  - The current documentation is very good, but it can be overhelming for
+  - The current documentation is very good, but it can be overwhelming for
     developers starting with GStreamer.
 
   - It's hard to evaluate GStreamer as a solution for a project in a quick way.
@@ -93,20 +91,20 @@ Topics:
 
   - Upgrades are usually very problematic and requires many hours in testing.
 
-  ✔ Using the <b>same software versions</b> across platforms makes apps more robust.
+  ✔ Using the <b>same software versions</b> across platforms.
 
-  ✔ <b>Smooth upgrades</b> trying to reduce regressions as much as possible with a testing
-    suite like insanity.
-    (Easier in the 0.10 branch now that it is reducing its activity :) )
+  ✔ <b>Smooth upgrades</b> trying to reduce regressions as much as possible with a good testing
+    framework like insanity.
+    (Easier in the 0.10 branch now that it is in maintenance mode ☺)
 
-  ✔ Give some love the <b>system plugins</b>:
-      • Navigation interface force-aspect-ratio implemented in all the video sinks.
+  ✔ Give some love to the <b>system plugins</b>:
+      • Navigation interface and force-aspect-ratio implemented in all the video sinks.
       • Audio passthrough working in all audio sinks.
       • osxvideosink working from the command line.
 
 --
 
-Supported Platforms:                                
+Supported Platforms and Distributions:
 
   •  Linux:
         •  Debian
@@ -121,7 +119,7 @@ Supported Platforms:
   •  OS X:
         •  Snow Leopard
         •  Lion
-        •  Mountain Lion ?¿
+        •  Mountain Lion (needs more testing)
 
   •  Android (next release)
 
@@ -137,7 +135,7 @@ Supported Platforms:
 
   - Local and network sources to support local and remote media playback
 
-  - Transformation elements, decoders and demuxers
+  - Filter elements, decoders and demuxers
 
   - Audio and video sinks
 
@@ -160,43 +158,44 @@ The SDK is modularized in several packages:
 
   • Allows to separate conflictive plugins (licenses or patents)
 
-GStreamer is <b>split in packages by functionality</b> rather than the current
- -base -good -bad and -ugly, as for bundling GStreamer into an applications
-it's more useful.
+The GStreamer components in the SDK are <b>split in packages by functionality</b>
+rather than the current -base -good -bad and -ugly.
 
-It was hard to split everything but that's the best we could do...
+It makes more sense for bundling GStreamer with applications.
+
+It was hard to split everything, but that's the best we could do...
 
 --
 
 Packages installed by default:
 
-  • base-system: Base system libraries such as glib, libtiff, libz
-  • gstreamer-core: GStreamer core (core libraries and utils)
-  • gstreamer-codecs: Decoding and demuxer plugins
-  • gstreamer-playback: Playback elements (eg: playbin, uridecobin)
-  • gstreamer-effects: Effects, instrumentation and misc plugins
+  • <b>base-system</b>: Base system libraries such as glib, libtiff, libz, ...
+  • <b>gstreamer-core</b>: GStreamer core (core libraries and utils)
+  • <b>gstreamer-codecs</b>: Decoding and demuxer plugins
+  • <b>gstreamer-playback</b>: Playback elements (eg: playbin, uridecobin)
+  • <b>gstreamer-effects</b>: Effects, instrumentation and misc plugins
                        (eg: deinterlace, videobox, alphcolor)
-  • gstreamer-networking: Networking plugins (eg: souphttpsrc, rtspsrc)
-  • gstreamer-capture: Capture plugins (eg: v4l2src, ksvideosrc, osxaudiosrc)
-  • gstreamer-visualizers: Visualization plugins (eg: goom)
-  • gstreamer-editing: Editing plugins (gnonlin, ges)
-  • gstreamer-python: Python bindings
-  • gstreamer-clutter: Clutter support
-  • gtk+:  Gtk+-2.0
-  • gtk-python: Gtk+ python bindings
-  • gobject-python: pygobject
-  • snappy: Snappy video player
+  • <b>gstreamer-networking</b>: Networking plugins (eg: souphttpsrc, rtspsrc)
+  • <b>gstreamer-capture</b>: Capture plugins (eg: v4l2src, ksvideosrc, osxaudiosrc)
+  • <b>gstreamer-visualizers</b>: Visualization plugins (eg: goom)
+  • <b>gstreamer-editing</b>: Editing plugins (gnonlin, ges)
+  • <b>gstreamer-python</b>: Python bindings
+  • <b>gstreamer-clutter</b>: Clutter support
+  • <b>gtk+</b>:  Gtk+-2.0
+  • <b>gtk-python</b>: Gtk+ python bindings
+  • <b>gobject-python</b>: pygobject
+  • <b>snappy</b>: Snappy video player
 
 --
 
 Optional packages:
-  • gstreamer-codecs-restricted: Codecs plugins with potential patents issues
-                                 (eg: a52dec mpeg2dec)
-  • gstreamer-codecs-gpl: Codecs plugins that depends on GPL libraries
-  • gstreamer-networking-restricted: Networking plugins with potential patents
-                                     issues (eg: mmssrc)
-  • gstreamer-dvd: DVD plugins
-  • gstreamer-ffmpeg: FFmpeg plugin
+  • <b>gstreamer-codecs-restricted</b>: Codecs plugins with potential patents issues
+            (eg: a52dec mpeg2dec)
+  • <b>gstreamer-codecs-gpl</b>: Codecs plugins that depends on GPL libraries
+  • <b>gstreamer-networking-restricted</b>: Networking plugins with potential patents
+            issues (eg: mmssrc)
+  • <b>gstreamer-dvd</b>: DVD plugins
+  • <b>gstreamer-ffmpeg</b>: FFmpeg plugin
 
 
 -- [text-align=center] [font=Ubuntu 40]
@@ -206,23 +205,23 @@ Optional packages:
 --
 
   • Testing Framework:
-    • Insanity
-    • Collect sample for the testig framework
-    • Manual and automated test suites for:
-      • Local media: container/codecs discovery, seeking, trick modes,
-                     frame stepping, deinterlacing
-      • Live streaming: RTP/RTSP, HTTP, HLS
-      • DVD
-      • Container and codecs: video decoders, audio decoders, subtitles
+        • Insanity
+        • Collect sample for the testig framework
+        • Manual and automated test suites for:
+            • Local media: container/codecs discovery, seeking, trick modes,
+                           frame stepping, deinterlacing
+            • Live streaming: RTP/RTSP, HTTP, HLS
+            • DVD
+            • Container and codecs: video decoders, audio decoders, subtitles
   • Video base clases:
-    • Finish the video base and move them to Base
-    • Port x264enc, mpeg2dec, gst-ffmpeg, png and jpeg plugins
+        • Finish the video base and move them to Base
+        • Port x264enc, mpeg2dec, gst-ffmpeg, png and jpeg plugins
   • Audio sinks:
-    • direcsoundsink: fixed audio passthrough
-    • osxaudiosink:  audio passthrough support
-  • Video sinks.
-    • d3dvideosink: stabilization
-    • osxvideosink: navigation, make it work with gst-launch, force-aspect-ratio
+        • direcsoundsink: fixed audio passthrough
+        • osxaudiosink:  audio passthrough support
+  • Video sinks:
+        • d3dvideosink: stabilization
+        • osxvideosink: navigation, make it work with gst-launch, force-aspect-ratio
   • HLS demuxer
   • Open Source Fluendo's ADPCM and iLBC plugins
   • Improved support for static builds
@@ -233,17 +232,19 @@ Optional packages:
 
 --
 
-Building a fully featured GStreamer is very similar to assemble a mini Linux distribution.
+Building a fully featured GStreamer is very similar to assemble a mini Linux distribution,
+with lots of packages dependencies introduced by the plugins.
 
-We are currently building almost <b>100 projects</b>! And the list is growing.
+We are currently building arround <b>100 projects</b>, and the list is growing.
 
 The first big question was, <b>what build system should we use?</b>
 
 --
 
-Maintaining several build systems, one for each platforms, was completely out of scope.
+Maintaining several build systems, one for each platform, was completely out of scope.
 
-The main requirement was a cross-platform build system.
+The main requirement was a cross-platform build system, aware of host and target <b>platform</b>,
+<b>architecture</b> and <b>distribution</b>
 
 This leaves out very good build systems like:
   •  jhbuild
@@ -254,7 +255,7 @@ The perfect candidate:
   •  Entropy Wave's build system (also used to build a SDK for GStreamer)
 
 The main problem is that it's shell script, so it would be harder to extend
-or the add new features, like the creation of native packages.
+and add new features, like native packaging.
 
 --
 
@@ -266,7 +267,7 @@ And cerbero was born...
 
   • Support for cross-compilation (either to a different arch or to a different platform)
 
-  • Projects are described with recipes files, one per project and platform
+  • Projects are described with recipes files, a single one shared across platforms.
 
   • Recipes are python classes, so it's easy to extend and adapt them to the buggy build systems.
 
@@ -282,7 +283,7 @@ And cerbero was born...
 
 --
 
-System requirements:
+Build system minimum requirements:
 
   • A toolchain:
     • compiler (GCC)
@@ -304,10 +305,9 @@ How do we get them for each platform?
 
 -- [tux_nude_beach.jpg] [text-align=center]
 
-Linux is just awesome!
+Linux distributions make our live <b>much</b> easier!
 
-Seriously... all distributions have a decent package manager that can let us
-install everything.
+Seriously... all distributions have a decent package manager to install everything.
 
 -- [mac1984.jpg] [text-align=center]
 
@@ -318,57 +318,74 @@ It comes with a good toolchain and most of the required software.
 We still need to install automake, autoconf, aclocal, libtool and pkg-config with macports,
 but just because they are not yet built by cerbero.
 
--- [mac1984.jpg]
-
-In the first release, we provided 2 separate builds for i386 and x86_64,
-but we will provided <b>universal builds</b> in the next release.
-
-The support for universal builds in cerbero is hackish.
-The sources are configured twice in separate build tree, for the 2 target archs
-and then merged into universal mach-o binaries using a tool named <b>lipo</b>
-We should avoid this for projects that supports universal builds.
-
 --  [Blue-Screen-Of-Death.jpg] [text-align=center]
 
-Windows is a nightmare...
+And Windows...
 
 --
 
 We need everything:
 
-  •  a shell: msys shell installed with mingw-get (provides also auto* and libtool)
-  •  python
-  •  git
-  •  gcc toolchain: built with the great MinGW-w64 project
-  •  pkg-config
+  •  <b>shell</b>: msys shell installed with mingw-get (provides also auto* and libtool)
+  •  <b>toolchain</b>: built with the great MinGW-w64 project
+  •  <b>python</b>
+  •  <b>git</b>
+  •  <b>pkg-config</b>
 
-To make it easier the toolchain is part of cerbero's bootstrap and only
-mingw-get python and git must be installed manually
+To make things easier cerbero installs the toolchain as part of the bootstrap,
+so you can build the sdk your self with 2 simple commands:
+  <b>$ cerbero bootstrap</b>
+  <b>$ cerbero package gstreamer-sdk</b>
 
-Builds are 10x~20x slower than on linux:
-  •  no native support for 'fork', emulated by msys which makes configure scripts very slow
-  •  make does a lot of string replacements
-
-Speed up builds:
-  •  using a unique cache file for all the builds (./configure --cache-file=/path/to/cache)
-  •  ccache
-
-Cross-compilation is much faster, but the SDK can't be completely cross-compiled as some bugs
-in wine affects wix, the packaging tool used for Windows.
+mingw-get, python and git must be installed manually.
 
 --
 
-Getting a working toolchain was the hardest thing.
-MinGW-w64 doesn't provide a pre-built toolchain with a stable GCC version so had to build it.
+Builds are <b>10x~20x</b> slower compared to linux:
 
-The build process is now integrated with cerbero:
+  •  no native 'fork', emulated by msys which makes configure scripts <b>very slow</b>
+
+  •  strings manipulations in 'make' mapping unix paths to windows paths.
+
+
+
+Speed up builds:
+
+  •  using a unique cache file for all the builds (./configure --cache-file=/path/to/cache)
+
+  •  ccache
+
+
+
+Cross-compilation is much faster, but the SDK can't be completely cross-compiled because
+some bugs in Wine affects WiX, the packaging tool used for Windows.
+
+--
+
+Getting a working toolchain was painful.
+
+MinGW-w64 doesn't provide a pre-built toolchain with a stable GCC version so we had to build it.
+
+The build process of the toolchain is now integrated with cerbero:
   1) Build a cross-compiler toolchain for windows (32 and 64 bits), mingw-w64 and binutils
   2) With this new toolchain, cross-compile a native windows toolchain, mingw-w64 and binutils
 
 There is still a problem with the GCC builds on Windows, they don't provide debug symbols
 for VS.
 
-In the future we will also provide builds with Microsoft's compiler.
+In the future we will also try to provide builds with Microsoft's compiler.
+
+-- [text-align=center]
+
+For all the platforms we provide builds for 32 and 64 bits (even on windows)
+
+For OX X, in the first release we provided 2 separate builds for i386 and x86_64,
+but we will ship <b>universal builds</b> in the next release.
+
+The support for universal builds in cerbero is hackish.
+The sources are configured twice in separate build tree, for the 2 target archs
+and then merged into universal mach-o binaries using a tool named <b>lipo</b>
+We should avoid this for projects that supports universal builds.
 
 -- [text-align=center] [font=Ubuntu 40]
 
@@ -378,9 +395,9 @@ In the future we will also provide builds with Microsoft's compiler.
 
 •  The SDK is packaged using the native packaging tools available for the target platform/distribution
 
-•  The packages mentioned in the functional split of the SDK conform the minimal packaging unit.
+•  The smallest packaging unit are the packages mentioned previously (base-system, gstreamer-core, etc...)
 
-•  Each package is plit in a runtime and a development version.
+•  Each package is split in a runtime and a development version.
 
 •  Meta packages groups packages to create the final installer
 
@@ -389,32 +406,48 @@ In the future we will also provide builds with Microsoft's compiler.
 On Linux:
 
   •  Debian/Ubuntu: dpkg-buildpackage
+
   •  Redhat/Fedora: rpmbuild
 
-  Packages -> rpm/deb regular packages
-  Meta Packages -> rpm/deb metapackage
+  •  Packages -> rpm/deb regular packages
 
+  •  Meta Packages -> rpm/deb metapackage
+
+  •  Install Path -> /opt/gstreamer-sdk
+
+--
 
 On OS X:
 
   •  PackageMaker: a tool to create installer packages (.pkg)
 
-  Packages -> installer package
-  Meta Packages -> Also called Meta package (installer with options)
+  •  Packages -> installer package
 
+  •  Meta Packages -> Also called Meta package (installer package with selection step)
+
+  •  Install Path -> /Library/Frameworks/GStreamer.framework
+
+--
 
 On Windows:
 
   •  WiX: Windows Installer XML toolset
 
-  Packages -> Merge Modules (.msm)
-  Meta Packages -> MSI installer (.msi)
+  •  Packages -> Merge Modules (.msm)
 
---
+  •  Meta Packages -> MSI installer (.msi)
 
-5. Integration with the system tools
+  •  Install Path -> c:\\gstreamer-sdk\\0.10\\
 
---
+  •  Environment variables: GSTREAMER_SDK_ROOT_X86 and GSTREAMER_SDK_ROOT_X86_64
+
+  •  GSTREAMER_SDK_ROOT_X86 is not added to PATH (avoid the "DLL Hell")
+
+-- [text-align=center]
+
+5. Integration with the operating system's IDE and tools
+
+-- [text-align=center]
 
 One of the goals of the SDK was to provide a complete development environment
 that could be used with the system tools, being XCode in OS X and VS in Windows.
@@ -424,73 +457,76 @@ but I don't see a pure Windows developer using MinGW.
 
 --
 
-Linux is awesome...again :)
+Linux is great...
 
 •  We have a shell
 •  We have the autotools! (yes, we love them...)
 •  We have libtool! (and yes.. we also love it)
 •  We have pkg-config
 
-A shell script named gst-sdk-shell sets the right environment to target the SDK,
-and that's it :)
+A shell script, named gst-sdk-shell, sets the right environment to target the SDK,
+and that's it ☺
 
 --
 
-Mac OS X uses a thing called Frameworks, that you can drag and drop into XCode
+Mac OS X uses something called Frameworks, that you can drag and drop into XCode
 
 A Framework bundle is a directory with the following structure:
 
-  Commands -> Versions/Current/Commands   (link to bin/)
-  Headers -> Versions/Current/Headers     (directory with the unversioned headers)
-  Libraries -> Versions/Current/Libraries (link to lib/)
-  GStreamer -> Versions/Current/GStreamer (link to the Framework library)
+  Commands         -> Versions/Current/Commands   (link to bin/)
+  Headers               -> Versions/Current/Headers     (Headers directory)
+  Libraries              -> Versions/Current/Libraries (link to lib/)
+  GStreamer          -> Versions/Current/GStreamer (link to the Framework library)
   Versions/Current -> Version/0.10        (link to the prefix)
-  Resources -> Versions/Current/Resources
+  Resources           -> Versions/Current/Resources (Framework description)
 
 When a Framework is added to a project in XCode:
- •  'Libraries' is added to the search path for libraries
- •  The Framework library, in our example 'GStreamer', is linked.
- •  Headers is added to headers search path, but they must be prefixed with GStreamer
-    #include <GStreamer/gst/gst.h>
+    •  'Libraries' is added to the search path for libraries
+    •  The Framework library, in our example 'GStreamer', is linked.
+    •  Headers is added to the headers search path, but they must be prefixed with GStreamer
+        #include <GStreamer/gst/gst.h>
 
 --
 
 Problems:
-  1) Includes must be prefixed with Framework name (#include <GStreamer/gst/gst.h>)
-  2) We can't link Headers to include/ because of versioned headers paths
-     include/gstreamer-0.10/gstreamer, and headers in other paths lib/
-  3) GStreamer can't be a link to lib/libgstreamer-0.10.dylib as only this lib
-     is linked
+
+  1) Includes must be prefixed with the Framework name (#include <GStreamer/gst/gst.h>)
+
+  2) We can't link 'Headers' to 'include/'' because of versioned headers paths like
+     include/gstreamer-0.10/gstreamer, and headers in other paths like lib/glib-2.0/include
+
+  3) GStreamer can't be a link to lib/libgstreamer-0.10.dylib because only this library is linked
+
 
 Solutions:
+
   1) Include manually /Library/Frameworks/GStreamer.framework/Headers to the headers search path
-  2) Use pkgconfig to find the include paths an copy this dirs to Headers
-     when we create the development package
-     $ cp include/gstreamer-0.10 Headers/ (Headers/gstreamer/gst.h)
-     $ cp lib/glib-2.0/include Headers/   (Headers/glibconfig.h)
-  3) Create a library named GStreamer using the cool --rexport_library
-     $ gcc -dynamiclib -o GStreamer -Wl,-reexport_library lib/ibgstreamer-0.10.dylib lib/libglib-2.0.dylib
+
+  2) Use pkgconfig to find the include paths an copy this dirs to Headers when we create the development package
+         $ cp include/gstreamer-0.10 Headers/ (Headers/gstreamer/gst.h)
+         $ cp lib/glib-2.0/include Headers/   (Headers/glibconfig.h)
+
+  3) Create a library named GStreamer using the cool --rexport_library in ld:
+         $ gcc -dynamiclib -o GStreamer -Wl,-reexport_library lib/ibgstreamer-0.10.dylib lib/libglib-2.0.dylib ...
      A tool named FrameworkLib in cerbero takes as input a list of .pc libs, looks for the libraries
      to link with pkg-config and create the wrapper library.
 --
+<b>Windows</b>
 
-To link the DLL's with VS on Windows an import library (.lib) is needed.
+To link the DLL's with Visual Studio on Windows an <b>import library (.lib)</b> is needed.
 A post build step in cerbero takes care of that, so for each shared library a .lib is created
 
-We wanted to make it very easy to use any of the available libraries of the SDK from VS,
+We wanted to make it <b>very easy to use</b> any of the available libraries in the SDK from VS,
 like it's done on Linux with pkg-config and the -libs and --cflags options.
 
 VS projects can include property sheets that can sets the paths for headers and libraries
 and the libraries to link.
 
--- [VisualStudioPkgConfig.png]
 
---
-
-cerbero includes a tool that parses .pc files and creates an equivalent .props file
+cerbero includes a tool that <b>parses .pc files and creates an equivalent .props file</b>
 that can be easily included in VS.
 
--- [no-markup]
+-- [no-markup] [font=monospace 20]
 
 <?xml version="1.0" ?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -518,12 +554,505 @@ that can be easily included in VS.
 	<ItemGroup/>
 </Project>
 
+-- [VisualStudioPkgConfig.png]
+
+-- [wizard.png] [bottom] [fit]
+
+And there is also a wizard for GStreamer projects!
+
 --
-
-And there is also a wizard for GStreamer projects :)
-
---
-
 
 6. Cerbero: the build system for the GStreamer SDK
+
 --
+
+• Written in python
+
+• Cross-platform: aware of host and target platform, architecture and distribution
+
+• Support for cross-compilation (either to a different arch or to a different platform)
+
+• Projects are described with recipes files, one per project and platform
+
+• Recipes are python classes, so it's easy to extend and adapt them to the buggy build systems.
+
+• Support for creating native packages
+
+• Source backends: git, svn, tarballs (backends are very easy to add)
+
+• Build backends: autotools, automake, CMake
+
+• Bootstrapping
+
+--
+
+Commands:
+
+•  <b>build</b>: Builds a recipe
+•  <b>buildone</b>: Re-build a single recipe
+•  <b>package</b>: creates a package
+•  <b>cleanone</b>: cleans a recipe
+•  <b>check</b>: runs check on a recipe
+•  <b>list</b>: list available recipes
+•  <b>list-packages</b>: list available packages
+•  <b>shell</b>: starts new shell with the build environment
+•  <b>run</b>: runs a command with the build environment
+•  <b>bootstrap</b>: bootstrap the build system
+
+--
+
+<b>Recipes</b>:
+  • Describes a project, the way it's built and the files it provide
+  • Files with the <b>.recipe</b> extensions loaded from the recipes directory
+  • Python classes inheriting from <i>cerbero.build.build.Recipe</i>
+  • Common Fields:
+        • <b>name</b>: name of the recipe
+        • <b>version</b>: version of the recipe
+        • <b>sources</b>: url of the sources
+        • <b>deps</b>: recipe dependencies
+        • <b>platform_deps</b>: platform recipe dependencies
+        • <b>stype</b>: source backend (Git, SVN, Tarball, Custom)
+        • <b>btype</b>: build backend (Autotools, CMake, Custom)
+        • <b>licenses</b>: recipe licenses
+        • <b>files_$CATEGORY </b>: list of files for a given category
+        • <b>platform_files_$CATEGORY </b>: platform list of files for a given category
+  • Backend Fields: source or build backend specific fields
+
+Building GStreamer:
+  <b>$ cerbero build gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly</b>
+
+-- [no-markup] [font=monospace 20]
+(file:atk.recipe)
+
+class Recipe(recipe.Recipe):
+    name = 'atk'
+    version = '2.4.0'
+    licenses = [License.LGPLv2Plus]
+    deps = ['glib']
+
+    files_libs = ['libatk-1.0']
+    files_devel = ['lib/pkgconfig/atk.pc', 'include/atk-1.0']
+    files_lang = ['atk10']
+
+
+--
+
+File categories helpers for:
+
+   • <b>binaries</b> -> <i>files_bins</i>: Handles the different extensions in several platforms
+
+   • <b>libraries</b> -> <i>files_libs</i>:
+          • Different location (lib/ or bin/)
+          • Different extensions(.so, .dylib, .dll)
+          • Different version naming scheme (libfoo-1.so.2 vs libfoo-1.1.dylib).
+          • Automatically adds development files to the development package
+            (libfoo-1.a, libfoo-1.la, libfoo-1.dll.a, libfoo-1.so, libfoo-1.dylib)
+
+   • <b>python</b> -> <i>files_python</i>: Add byte-compiled files if present and handles different python version
+
+   • <b>lang</b> -> <i>files_lang</i>: For translation files
+
+   • <b>man (to be added)</b> -> <i>files_man</i>: manual pages
+
+   • <b>doc (to be added)</b> -> <i>files_doc</i>: documentatio
+
+
+-- [no-markup] [font=monospace 20]
+(file:pango.recipe)
+
+class Recipe(recipe.Recipe):
+    name = 'pango'
+    version = '1.30.1'
+    autoreconf = True
+    autoreconf_sh = 'ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS" autoreconf -ivf '
+    licenses = [License.LGPLv2Plus]
+    configure_options = '--with-included-modules '
+    deps = ['cairo', 'fontconfig', 'freetype']
+    platform_deps = {
+        Platform.WINDOWS: ['gtk-doc-windows'],
+        Platform.LINUX: ['gtk-doc'],
+        Platform.DARWIN: ['gtk-doc'],
+    }
+
+
+    files_libs = ['libpangocairo-1.0', 'libpango-1.0', 'libpangoft2-1.0']
+    files_bins = ['pango-querymodules', 'pango-view']
+    files_devel = ['include/pango-1.0',
+        'lib/pkgconfig/pangoft2.pc', 'lib/pkgconfig/pango.pc',
+        'lib/pkgconfig/pangocairo.pc']
+    platform_files_libs = {
+        Platform.WINDOWS: ['libpangowin32-1.0'],
+        Platform.LINUX: ['libpangox-1.0'],
+    }
+    platform_files_devel = {
+        Platform.WINDOWS: ['lib/pkgconfig/pangowin32.pc'],
+        Platform.LINUX: ['lib/pkgconfig/pangox.pc'],
+    }
+
+    def prepare(self):
+        if self.config.target_platform == Platform.DARWIN:
+            self.configure_options += ' --without-x '
+
+--
+
+<b>Packages</b>:
+
+  • Describes a packages.
+  • Files with the <b>.package</b> extension loaded from the packages directory
+  • Fields:
+      • <b>name</b>: name of the package
+      • <b>shortdesc</b>: Short description of the package
+      • <b>longdesc</b>: Long description of the package
+      • <b>version</b>: version of the package
+      • <b>codename</b>: codename of the release
+      • <b>uuid</b>: unique id for this package
+      • <b>license</b>: package license
+      • <b>vendor</b>: vendor for this package
+      • <b>org</b>: organization for this package (eg: net.foo.bar)
+      • <b>url</b>: url for this pacakge
+      • <b>sys_deps</b>: system dependencies for this package
+      • <b>sys_deps_devel</b>: development system dependencies for this package
+      • <b>ignore_package_prefix</b>: don't use the package prefix set in the config
+      • <b>resources_license</b>: filename of the .txt license file
+      • <b>resources_license_unwrapped</b>: filename of the .txt license file
+                                       withouth the 80 chars wrapping
+      • <b>resources_license_rtf</b>: filename of .rtf license file
+      • <b>resources_icon</b>: filename of the .ico icon
+      • <b>resources_icon_icns</b>: filename of the .icsn icon
+      • <b>resources_backgound</b> = filename of the background image
+      • <b>resources_preinstall</b> = filename for the pre-installation script
+
+Packaging the SDK:
+
+  <b>$ cerbero package gstreamer-sdk</b>
+
+--
+
+4 different types of packages:
+
+  •  <b>Package</b>: smallest packaging unit.
+
+  •  <b>SdkPackage</b>: installer that combines several <i>Package</i> and take cares of
+        setting up the environme for the SDK (env variables and registry entries
+        on Windows. OS X framework for OS X)
+
+  •  <b>InstallerPackage</b>: installer that combines several <i>Package</i>. Similar
+        to <i>SdkPackage</i>, except that it only install files.
+        Can be used to extend the SDK, for example with a codec pack.
+
+  •  <b>App</b> (work in progress): Creates an installer for applications, either bundling
+        the SDK or depending on an installed version of the SDK's runtime. On Windows,
+        it creates links in the Home Menu.
+        On OS X, it creates an Application bundle, relocating the shared libraries if
+        the SDK is bundled.
+
+-- [no-markup] [font=monospace 20]
+(file:gstreamer-core.package)
+
+class Package(package.Package):
+
+    name = 'gstreamer-core'
+    shortdesc = 'GStreamer core'
+    url = "http://www.gstreamer.com"
+    version = '2012.9'
+    codename = 'Amazon'
+    license = License.LGPL
+    vendor = 'GStreamer Project'
+    org = 'com.gstreamer'
+    uuid = '32fe67c2-4565-411f-8287-e8faa892f853'
+    deps = ['base-system']
+
+    files = ['gstreamer', 'gst-plugins-base:bins:libs:core:lang',
+            'gst-sdk-shell',
+            'gst-plugins-good:core:lang',
+            'gst-plugins-bad:core:lang',
+            'gst-plugins-bad:core:lang',
+            'gst-plugins-ugly:core:lang']
+    files_devel = ['gstreamer-static', 'gst-plugins-base-static:core_devel',
+            'gst-plugins-good-static:core_devel', 'gst-plugins-bad-static:core_devel']
+    platform_files = {Platform.DARWIN: ['gstreamer-osx-framework']}
+
+-- [no-markup] [font=monospace 20]
+(file:gstreamer-sdk.package)
+
+class SDKPackage(package.SDKPackage):
+
+    name = "gstreamer-sdk"
+    shortdesc = "GStreamer SDK"
+    longdesc = "GStreamer SDK"
+    title = "GStreamer SDK"
+    url = "http://www.gstreamer.com"
+    version = '2012.9'
+    sdk_version = '0.10'
+    codename = 'Amazon'
+    license = License.LGPL
+    uuid = '3ffe67b2-4565-411f-8287-e8faa892f853'
+    vendor = "GStreamer Project"
+    org = "com.gstreamer"
+    ignore_package_prefix = True
+    resources_wix_installer = 'installer.wxs'
+    packages =[
+               # (name, required, selected)
+               ('gstreamer-core', True, True),
+               ('gstreamer-system', False, True),
+               ('gstreamer-playback', False, True),
+               ('gstreamer-codecs-gpl', False, False),
+               [...]
+               ('gstreamer-codecs-restricted', False, False),
+               ('gstreamer-tutorials', False, True),
+              ]
+    platform_packages = {
+            Platform.WINDOWS: [('vsintegration', True, False)],
+            Platform.DARWIN: [('gstreamer-xcode-integration', False, True)],
+            }
+
+    install_dir = {
+        Platform.WINDOWS: 'gstreamer-sdk',
+        Platform.LINUX: '/opt/gst-sdk/',
+        Platform.DARWIN: '/Library/Frameworks/GStreamer.framework/'}
+    root_env_var = 'GSTREAMER_SDK_ROOT_%(arch)s'
+    osx_framework_library = (reamer', 'lib/GStreamer')
+
+-- [no-markup] [font=monospace 20]
+(file:longomatch.package)
+
+class App(package.App):
+
+    name = 'longomatch'
+    app_name = 'LongoMatch'
+    shortdesc = 'LongMatch Video Analysis'
+    url = "http://www.longomatch.org/"
+    version = '0.17.5'
+    license = License.GPL
+    vendor = 'LongoMatch Project'
+    uuid = '5f444646-4165-511f-8287-e8f2a895f853'
+    org = "org.longomatch"
+    app_recipe = 'longomatch'
+    deps = ['base-system', 'gstreamer-core', 'gstreamer-codecs', 'gstreamer-system',
+            'gstreamer-capture', 'gstreamer-libav', 'gstreamer-editing', 'gstreamer-codecs-gpl',
+            'gstreamer-codecs-restricted', 'gstreamer-playback', 'gtk+-2.0', 'mono']
+    commands = [('LongoMatch', 'bin/LongoMatch', False, None)]
+--
+
+<b>Cerbero configuration files</b>:
+
+  • files with python syntax
+
+  • User config files: uses the '.cbc' extension
+
+      • Main config: ~/cerbero/.cerbero.cbc
+
+      • User config: a  file passed using the command line <i>--config  filename</i>
+
+  • Platfrom config files: uses the '.config' extension. Loaded based on the
+      target platform. (windows.config, darwin.config, linux.config, android.config)
+      Used to set the correct environment for the toolchain.
+
+Load sequence:
+
+  1) Main configuration
+  2) User config
+  3) Platform config
+
+$ cerbero -c cross-win32.cbc bootstrap
+
+-- [no-markup] [font=monospace 20]
+(file:cross-win64.config)
+
+
+import os
+from cerbero.config import Platform, Architecture, Distro, DistroVersion
+
+target_platform=Platform.WINDOWS
+target_arch=Architecture.X86_64
+target_distro=Distro.WINDOWS
+target_distro_version=DistroVersion.WINDOWS_7
+
+-- [no-markup] [font=monospace 20]
+(file:linux.config)
+
+import os
+from cerbero.config import Architecture
+
+if target_arch == Architecture.X86_64:
+    prefix=prefix or os.path.expanduser('~/cerbero/dist/linux_x86_64')
+    sources=sources or os.path.expanduser('~/cerbero/sources/linux_x86_64')
+    cache_file= cache_file or 'linux_x86_64'
+elif target_arch == Architecture.X86:
+    prefix=prefix or os.path.expanduser('~/cerbero/dist/linux_osx_i686')
+    sources=sources or os.path.expanduser('~/cerbero/sources/linux_i686')
+    cache_file=cache_file or 'linux_i686'
+
+for f in ['CFLAGS', 'CCASFLAGS', 'CXXFLAGS', 'LDFLAGS', 'OBJCFLAGS']:
+    os.environ[f] = os.environ.get(f, '')
+
+os.environ['CFLAGS'] += ' -g -O2'
+os.environ['CXXFLAGS'] += ' -g -O2'
+os.environ['OBJCFLAGS'] += ' -g -O2'
+os.environ['am_cv_python_pyexecdir'] = '%s/%s/site-packages' % (prefix, py_prefix)
+os.environ['am_cv_python_pythondir'] = '%s/%s/site-packages' % (prefix, py_prefix)
+
+if use_ccache:
+    os.environ['CC'] += 'ccache gcc'
+    os.environ['CXX'] += 'ccache g++'
+--
+
+<b>Directories</b>:
+
+  • <b>prefix_dir</b>: sets the output directory for the builds (~/cerbero/dist/$platform_$arch/)
+
+  • <b>sources_dir</b>: directory where the sources are extracted (~/cerbero/sources/$platform_$arch/)
+
+  • <b>local_sources_dir</b>: cache directory for the sources (~/cerbero/sources/local/)
+
+--
+
+<b>Build environment</b>
+  • cerbero commands are run in shell with an environment that tries to isolate the build
+  • a set of environment variables are set relative on the build prefix
+        • LD_LIBRARY_PATH
+        • LDFLAGS
+        • C_INCLUDE_PATH
+        • CPLUS_INCLUDE_PATH
+        • DYLD_FALLBACK_LIBRARY_PATH
+        • PATH
+        • MANPATH
+        • INFOPATH
+        • PKG_CONFIG_PATH
+        • PKG_CONFIG_LIBDIR
+        • GI_TYPELIB_PATH
+        • XDG_DATA_DIRS
+        • XDG_CONFIG_DIRS
+        • XCURSOR_PATH
+        • ACLOCAL_FLAGS
+        • ACLOCAL
+        • PERL5LIB
+        • MONO_PREFIX
+        • MONO_GAC_PREFIX
+        • GST_PLUGIN_PATH
+        • GST_REGISTRY
+        • PYTHONPATH
+
+--
+
+<b>Build process</b>
+
+The build process is divided in 2 big steps:
+
+    • Fetching the sources -> Source backend
+
+    • Building the project -> Build backend
+
+--
+
+The sources step is split in 2 sub-steps:
+
+    • <b>fetch</b>: fetch the sources
+
+    • <b>extract</b>: extract the sources
+
+
+
+The build step is split in 4 sub-steps:
+
+    • <b>configure</b>: configures the project
+
+    • <b>compile</b>: compiles the project
+
+    • <b>install</b>: installs the project
+
+    • <b>post_install</b>: runs a post-install step
+
+--
+
+Backends are python classes that implements these steps.
+A recipe inherits from the backend bases defined by the 'btype' an 'stype' fields
+using python metaclasses.
+
+class Recipe(package.Recipe)
+    stype = Git                                              ----> class Recipe(package.Recipe, Git, Autotools)
+    btype = Autotools
+
+--
+
+<b>Build command</b>
+
+  $ cerbero build recipe_name
+
+  1) Loads configuration
+  2) Load recipes from the recipes and dir and call prepare() with the current config
+  3) Resolve dependencies
+  4) Build the list of recipes in order
+
+Cerbero uses a cache that stores the build state of each recipe, recording the last
+successful step. The state of recipe is reset when it's recipe file is edited.
+
+--
+
+<b>Package command</b>
+
+  $ cerbero build package_name
+
+  1) Loads configuration
+  2) Load recipes from the recipes and dir and call prepare() with the current config
+  3) Load packages from the packages and dir
+  4) Get the list of packages dependencies
+  4) Get list of recipes to build
+  5) Resolve dependencies
+  6) Build the list of recipes in order
+  6) Package packages dependencies
+  6) Creates the final package
+
+--
+
+<b>Extending recipes and packages with external repos</b>
+
+• cerbero includes a default set of recipes and packages that can be extended,
+  adding a couple of lines to the user configuration files:
+      external_recipes = {'repo_name': repo_path, priority}
+      external_packages = {'repo_name': repo_path, pripority)}
+
+
+--
+
+<b>cerbero-extras</b>
+
+• Extends cerbero with new recipes and packages
+    $ git clone https://github.com/ylatuya/cerbero-extras.git
+    $ cerbero -c cerbero-extras/extras-x86.cbc list
+
+• Contains:
+   • mono
+   • gtk-sharp
+   • longomatch
+
+And very soon:
+   • totem
+   • pitivi
+   • banhsee
+   • transmageddon
+   • and many more ....
+
+--
+
+Questions ?
+
+
+
+
+
+
+
+Useful links:
+ • Landing page: http://www.gstreamer.com
+ • Documentation: http://docs.gstreamer.com
+ • GStreamer SDK repo: http://cgit.freedesktop.org/gstreamer-sdk
+ • Bugzilla: https://bugs.freedesktop.org/enter_bug.cgi?product=GStreamer%20SDK
+ • Fluendo: http://www.fluendo.com/
+ • Collabora: http://www.collabora.com/
+
+-- [thank_you.jpg] [bottom] [text-align=center]
+
+Many thanks to Fluendo and Collabora for making the GStreamer SDK possible
+and to everyone that contributed to this project.
+
