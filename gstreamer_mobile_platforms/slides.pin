@@ -1,117 +1,219 @@
 #!/usr/bin/env pinpoint
 [font=Sans 40px]
-[text-color=rgb(64, 64, 64)]
+[text-color=rgb(250, 250, 250)]
 [center]
 [img/bg.jpg]
-[shading-opacity=0.0000000]
+[shading-opacity=0.8]
 [fit] # default is fit, there's also fill.
 # use <b> for stroken
 
 --[font=Sans 60px]
-GStreamer for Mobile Platforms: Android and iOS
---[font=Sans 60px]
-Who am I ?
+<b>GStreamer for Mobile Platforms: Android and iOS</b>
+
+GStreamer Conference 2013, Edinburgh
+
+Andoni Morales Alastruey
+
 --[font=Sans 35px]
-Andoni Morales Alastruey <amorales@fluendo.com>
+<b> Who am I ?</b>
+
+Andoni Morales Alastruey amorales@fluendo.com
+
 • Working for Fluendo
+
 • GStreamer contributor since 2008
-• Author of LongoMatch, a sports video analysis software (www.longomatch.org)
+
+• LongoMatch, a sports video analysis software
+  using GStreamer (www.longomatch.org)
 
 --[font=Sans 60px]
-1. Description of the platforms and the development tools
-2. Platform plugins (source, decoder, sink)
+
+1. Platform and development tools
+
+2. Platform plugins
+
 3. Building GStreamer with cerbero
-4. Integration with the build infrastucture (embedding GStreamer)
-4. Installing GStreamer and creating your first application
+
+4. Integration with the build infrastructure
+
+5. Installing GStreamer and creating your first application
 
 --[font=Sans 60px]
-Description of the platforms and the development tools
+<b>1. Platforms and the development tools</b>
 
 --[font=Sans 60px]
 <b>Android</b>
 
-• Programing language: java
+--
+• Programming language: java
+
 • SDK:
    • Android SDK Manager
    • ADB (command line tool to communicate with devices)
    • Emulator, ant, and other tools for development
-• NDK: set of cross-toolchains (compilers, linkers, etc..) that can generate native binaries
-• JNI: managed code (Java programming language) to interact with native code (written in C/C++)
-• Architectures: MIPS, x86, ARMv5TE, ARMv7-A (hardware FPU, Thumb-2, NEON)
+
+• NDK: set of cross-toolchains that can generate native binaries
+
+• JNI: managed code (Java programming language) to interact with
+   native code (written in C/C++)
+
+• Architectures: MIPS, x86, ARMv5TE,
+   ARMv7-A (hardware FPU, Thumb-2, NEON)
+
+--
+
+• Support for shared libraries (limited per process)
+
 • Android Market:
    • Unique setup fee for developers 25$
    • Alfa, Beta testing and staged rollouts
+
 • Development in Linux, Windows and OS X
+
 • Cheap devices for testing
 
 --
+# A different install from the SDK
+
 <b> The NDK (Native Development Kit) </b>
- • Toolchains (compiler, linker, etc...) for the different target architectures
+
+ • Toolchains (compiler, linker, etc...) for the different target
+   architectures
+
  • ndk-build: build system to compile native code and embed it the .apk
+
  • ndk-gdb: remote GDB debugger
+
  • Provide a limited API:
    • libc (C library) headers
    • libm (math library) headers
    • JNI interface headers
    • libz (Zlib compression) headers
    • liblog (Android logging) header
-   • OpenGL ES 1.1 and OpenGL ES 2.0 (3D graphics libraries) headers
-   • libjnigraphics (Pixel buffer access) header (for Android 2.2 and above).
+   • OpenGL ES 1.1 and OpenGL ES 2.0 headers
+   • libjnigraphics (Pixel buffer access) header
    • A Minimal set of headers for C++ support
    • OpenSL ES native audio libraries
    • Android native application APIS
 
-
 --
+# We can do most of the things natively
+<b>Android Multimedia Stack</b>
 
-Android Multimedia stack
+  • OpenGL ES 2.0 + EGL (video sink)
 
-  • OpenGL ES 2.0 (video sink)
   • OpenSL ES (audio sink)
-  • android.media.MediaCodec (video/audio decoder/encoder)
+
+  • android.media.MediaCodec
+     (video/audio decoder/encoder)
+
   • android.hardware.Camera (video source)
 
 --
+# I miss more native API.
+<b>Android Multimedia Stack</b>
 
 # Video players and camera capturers
-• Good multimedia API for playback and capture and rendering
+• Good multimedia API for playback and capture and
+   rendering
 
 # Audio: AAC, MP3, FLAC, Vorbis, AMR, Midi, PCM
 # Video: H264, H264, AVC, VP8
 # Muxers: WebM, Matroska, MP4, OGG, Mpeg-TS
 • Support for most common audio and video formats
 
-• Sotfware and hardware decoders/encoders
+• Software and hardware decoders/encoders
 
 # RTSP, HTTP, HLS
 • And a few streaming protocols (RTSP, HTTP, HLS)
 
+--[font=Sans 60px]
+# If you have ever considered developing an app for iOS,
+# please reconsider
+<b>iOS</b>
+
+• Programing language: Objective C
+
+• We can use the GStreamer C API directly
+
+• XCode:
+   • Cross toolchain
+   • Frameworks
+
+• Architectures:
+  • Emulator: x86
+  • Devices: ARMv6 and ARMv7
+
+• Static linking
+
 --
+<b>iOS</b>
 
-# We want to write any kind of application from Non-linear
-# to video editors, transcoders or media servers.
-• We want much more than just playback or capture
+• Some parts of the API are not available in the emulator
 
-# Opus, WMV and WMA and many other weird codecs
-• Some codecs and formats are not supported:
-   ASF, DTS, or new codecs like Opus
+# You can only access Assets or files in the app sandbox
+• Applications sandboxing is insane
 
-# Only available on Tegra 3 devices
-• Other are device specific:
-   WMA and WMV
+• App Store:
+   • 100$ per developer... per year!!!
+   • You can't test your code in a real device without
+      a developer account :(
+   • Deploying apps to the App store is a long process,
+     make sure you have everything tested.
 
-# Smooth Streaming or DASH with GStreamer.
-• Only a few streaming protocols are supported:
-   DASH, Smooth Streaming, RTP ?
+• Development in OS X only
+
+• Devices are not cheap
+
+• Their business model is clear: $$$$$$
 
 --
+# Regarding the build environment
 
-Problems with using GStreamer on Android
+<b> XCode </b>
+
+ • IDE: similar development environment to OS X
+
+ • Cross toolchain for the emulator and the device
+
+ • iOS Frameworks
+
+ • We can use the GStreamer C API
+
+--
+#EAGL Is the iOS Implementation of an OpenGL ES Rendering Context
+
+# No API for hardware decoders SUCKS!
+<b>iOS Multimedia Stack</b>
+
+  • OpenGL ES 2.0 + EAGL (video sink)
+
+  • CoreAudio Remote I/O Audio Unit (audio sink)
+
+  • No API for hardware decoders/encoders!
+    (VideoToolBox is a private Framework for iOS)
+
+  • AVFoundation (video source and URI decoder)
+
+--
+<b>iOS Multimedia Stack</b>
+
+# Video players and camera capturers
+• Good API for source and sink elements
+
+• Hardware decoding is limited to file and http uri's
+  in a supported container
+
+• Only a few format supported
+
+--[font=Sans 60px]
+
+<b> Issues we have to deal with on these platforms </b>
 
 --
 # GStreamer itself only depends on glib, libxml2, libffi and libz,
 # but plugins pull-in many dependencies
-• Plugin-based architecture -> too many shared libraries
+• Plugin-based architecture -> lots of shared libraries
 
 # android's dynamic linker has a hard-coded limit on the number
 # of .so files (shared libraries and/or plugins) you can load in a single process.
@@ -119,10 +221,13 @@ Problems with using GStreamer on Android
 • Android's dynamic linker limits the number of shared
    libraries per process.
 
+• iOS only supports static linking
+
 # Including all plugins we have 262 shared libraries
 • We have more than 262 shared libraries 😓
 
-• Hard to easily distribute it in the Market
+• Embedding GStreamer in a transparent way
+   for developers isn't easy
 
 # The LGPL requires a re-linking mechanism for statically linked
 # libraries.
@@ -130,26 +235,267 @@ Problems with using GStreamer on Android
 
 # Other API's are not even available in C like the
 # MediaCodec API
-• The NDK is limited: C library (BIONIC) and other
-   libraries like OpenSL.
+• The NDK is limited to the C library (BIONIC) and
+   a few other libraries (OpenSL and OpenGL)
+
+• No hardware decoders in iOS
+
+• We need to use static plugins
+
+--[font=Sans 60px]
+<b>2. Platform plugins</b>
+# Important: use only public API!!!
+# add missing features
+
+--[font=Sans 60px]
+OpenGL ES + EGL/EAGL  Video Sink
+
+eglglessink gst-plugins-gl
 
 --
+<b>OpenGL ES + EGL/EAGL  Video Sink</b>
 
-MediaCodec API
+• Available for Android and iOS
 
-# Video players and camera capturers
-• Java API: needs JNI to interface with the Java objects
+• Public and native API
+
+# OpenGL not really made for video display but usable
+# Replacement for old surfaceflinger, non-public API
+• Supports hardware accelerated colorspace
+   conversion, scaling
+
+# YUV, RGB, shaders
+• Usable on all Android (since 2.3) and iOS devices
+
+# Also other platforms with OpenGL ES/EGL
+# Available since Android Gingerbread (2.3)
+• Works like any other GStreamer video sink
+
+• Requires the application to provide a surface
+   using the GstVideoOverlay interface
+
+• Can provide a Surface + SurfaceTexture for
+   direct rendering in Android with amcvideodec
+
+
+--[font=Sans 60px]
+<b> Android </b>
+
+--[font=Sans 60px]
+OpenSL ES Audio Sink/Source
+
+openslessink openslessrc
+--
+# This API is the only public native API for
+# audio, it replaces the old audioflinger
+# that uses private API
+<b>OpenSL ES Audio Sink/Source</b>
+
+• OpenSL ES only public native API for
+   audio on Android
+
+# Khronos standard (think: OpenGL, OpenMAX)
+# Replace old audioflinger based sink, non-public API
+• Very limited implementation available on Android
+
+# Very complex and powerful standard though, IMHO overengineered
+#   Mono, S16, 16kHz recording
+#   Mono/Stereo, U8/S16, up to 48kHz playback
+#   No device selection or any other more advanced features
+• Usable on all Android devices
+
+# Available since Android Gingerbread (2.3)
+• Uses Android-specific API extensions
+
+--[font=Sans 60px]
+android.media.MediaCodec Wrapper
+
+amvvideodec amcaudiodec
+
+--
+<b> Media Codec API</b>
+
+• Be able to use device's codecs
+# Hardware acceleration, no worries about patent licenses
+
+• Uses Java API via JNI
+# OpenMAX AL another option, very limited on Android
+#   only MPEGTS decoding
+# Very simple and powerful API
+
+• Java/JNI not performance problem
+# Very few method calls per frame
+# MediaCodec only small JNI wrapper around stagefright (C++)
+
+• Usable on all Android devices (Jelly Bean 4.1)
+# Available since Android Jelly Bean (4.1)
 
 • Bad colorspace definitions (vendor-specific colorspaces):
    QOMX_COLOR_FormatYUV420PackedSemiPlanar64x32Tile2m8ka
-   which it's actually more like NV12
+
+• Supports direct rendering with GL sinks
+
+--
+<b> Media Codec API</b>
+
+• Implemented: audio/video decoders
+
+# Hardware and software codecs
+# Tested so far on TI Ducati and NVidia Tegra3
+• Encoders: patch in bugzilla
+
+# Only wotks with some devices
+• 1080p h264 easily possible, impossible in software
+
+• Supported video codecs:
+   h264/AVC, MPEG4, h263, MPEG2 and VP8
+
+• Supported audio codecs:
+   AAC, MP3, AMR-NB/WB, A-Law, µ-Law,
+   Vorbis and FLAC
+
+--
+<b>androidcamerasrc? </b>
+
+• No source element for now
+
+• Can be easilly implemented with the Camera Java API
+
+• Easy to implement with appsrc for now :)
+
+
+--[font=Sans 60px]
+<b> iOS </b>
+
+--
+AVFoundation video source
+
+avfvideosrc
+
+--
+<b>AVFoundation video source</b>
+
+• Output formats: NV12, UYVY, YUY2
+
+• Output resolutions: 192x144 352x288 480x360 640x480
+   1280x720 1980x1080
+
+• Supports device selection
+
+--[font=Sans 60px]
+
+AVAssetReader URI decoder
+
+iosavassetsrc
+
+--
+# Only way we have found to support hardware decoders in iOS
+# It can only decode supported formats and protocos
+# Doesn't not cover many of the use cases used in GStreamer
+# Only useful for Playback
+
+
+• AVAssetReader API  (in AVFoundation)
+
+• All-in-one source + demuxer + decoder:
+
+  gst-launch -v -m iosavassetsrc uri="file://movie.mp4" ! autovideosink
+
+• Can read from iOS Assets (ipod-library://, file://)
+
+• Takes advantage of the hardware decoders
+
+• But only works with the supported protocols and formats
 
 
 --[font=Sans 60px]
 
-How we solved it..
+CoreAudio
+
+osxaudiosrc
 
 --
+• Same element used in OS X
+
+• Uses the RemoteIO backend instead of HAL
+
+• Does not support device selection in OS X
+
+--[font=Sans 60px]
+
+3. Building GStreamer with cerbero
+
+--
+<b> Cerbero </b>
+
+# We use cerbero, a build system developped for building the GStreamer SDK
+# Supports many platforms, cross-compilation and toolchain configuration.
+• We use a build system named Cerbero:
+   3-headed dog which guards the doors of the Underwold
+   (Linux, Windows, OS X)
+
+• Same build system used in all platforms.
+
+# Makefile, autotools and CMake. This saved us a lot ot time
+# compared to the old approach of porting the build to ndk-build
+• Re-use of upstream packaging system.
+
+• Native packaging:
+   Windows .msi, OS X .pkg, RPM and DEB
+
+• Easy to maintain
+
+• Easy to add new packages or 3rd party plugins
+
+--
+<b> Cerbero </b>
+
+• Bootstrapping facilities
+
+• Platform definition files:
+   very easy to add support for new platforms/toolchains
+
+• Build config files:
+   configures build for differents uses
+
+--[shading-opacity=0.9000000][no-markup][text-color=white][font=Monospace 25px]
+
+# Shows how simple and fast is rebuilding the sdk
+$ git clone git://anongit.freedesktop.org/gstreamer/sdk/cerbero
+
+$ cerbero -c config/cross-android.cbc bootstrap
+
+$ cerbero -c config/cross-android.cbc package gstreamer-1.0
+
+--
+Available configuration files:
+
+<b>Android</b>
+
+• cross-android.cbc: Android armv5
+• cross-android-armv7.cbc: Android armv7
+• cross-android-x86.cbc: Android armv7
+
+<b>iOS</b>
+
+• cross-ios-x86.cbc: iOS x86 (emulator)
+• cross-ios-armv7.cbc: iOS armv7 (devices)
+• cross-ios-universal.cbc: iOS armv7+x86
+
+--[font=Sans 60px]
+4. Integration with the build infrastructure
+   (embedding GStreamer)
+
+# Next I will try to explain how we managed to integrate
+# GStreamer with the native build process, in a way
+# that's transparent to users
+--
+
+<b>Android</b>
+
+# Force to use static plugins due to limitaion in number of shared
+# libraries per process
+• Static plugins
 
 # Static libraries built with -DPIC and -fPIC
 # Static linking inly includes oject libraries that
@@ -165,67 +511,19 @@ How we solved it..
     • Allows selecting only the plugins being used.
 
 --[img/app.png]
-
---[font=Sans 60px]
-
-Building the SDK
-
---
-
-# We use cerbero, a build system developped for building the GStreamer SDK
-# Supports many platforms, cross-compilation and toolchain configuration.
-• We use a build system called Cerbero.
-
-• Same build system used to build the SDK in
-   all platforms.
-
-# Makefile, autotools and CMake. This saved us a lot ot time
-# compared to the old approach of porting the build to ndk-build
-• Re-use of upstream packaging system.
-
-• Native packaging:
-   Windows .msi, OS X .pkg, RPM and DEB
-
-• Easy to maintain
-
-• Easy to add new packages or 3rd party plugins
-
-
---[shading-opacity=0.5000000][no-markup][text-color=black][font=Monospace 25px]
-
-# Shows how simple and fast is rebuilding the sdk
-$ git clone git://anongit.freedesktop.org/gstreamer-sdk/cerbero
-
-$ cerbero -c config/cross-android.cbc bootstrap
-
-$ cerbero -c config/cross-android.cbc package gstreamer-sdk
-
---[font=Sans 60px]
-
-Static plugins and modules
-
---
-
-• GStreamer plugins and GIO modules must
-   be handled in a different way.
-
-# A bug open for glib, missing documentation for GStreamer
-• We are trying to get these changes upstream
-
-# Instead of being loaded manually from path we must explicetly register
-# them.
-• Static plugins need to be registered manually.
+# What the application sees is  single shared library
+# Call LoadLibrary
 
 --[font=Sans 60px]
 
 # A set of makefiles that extend nkd-build's core to generate
 # libgstreamer_android.so and link it to the application
-Integration with ndk-build
+<b>Android integration with the NDK</b>
 
 # From the point of view of application developers we tried
 # to make things as easy as possible.
 # Example of Android.mk from the Android NDK samples
---[shading-opacity=0.5000000][no-markup][text-color=black][font=Monospace 40px]
+--[shading-opacity=0.9000000][no-markup][text-color=white][font=Monospace 40px]
 
 LOCAL_PATH := $(call my-dir)
 
@@ -238,7 +536,7 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 # jni/Android.mk modified to include GStreamer
---[shading-opacity=0.5000000][no-markup][text-color=black][font=Monospace 60px]
+--[shading-opacity=0.9000000][no-markup][text-color=white][font=Monospace 60px]
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -252,144 +550,159 @@ include $(CLEAR_VARS)
 
 include $(GSTREAMER_NDK_BUILD_PATH)/plugins.mk
 
-GSTREAMER_SDK_ROOT := /home/cerbero/android_arm
+GSTREAMER_ROOT := /home/cerbero/android_arm
 GSTREAMER_PLUGINS =  $(GSTREAMER_PLUGINS_CORE)\
                      $(GSTREAMER_PLUGINS_CODECS)
 GSTREAMER_EXTRA_DEPS := json-glib-1.0
 
 include $(GSTREAMER_NDK_BUILD_PATH)/gstreamer.mk
 
---[img/build_steps.png]
+# jni/Android.mk modified to include GStreamer
+--[shading-opacity=0.9000000][no-markup][text-color=white][font=Monospace 60px]
 
+(Application.mk)
+APP_ABI = armeabi armeabi-v7a
+
+(Android.mk)
+ifeq ($(TARGET_ARCH_ABI), armeabi)
+  GSTREAMER_ROOT := /home/gstreamer/android_arm
+else ifeq ($(TARGET_ARCH_ABI), armeabi-v7a)
+  GSTREAMER_ROOT := /home/gstreamer/android_armv7
+else
+  $(error "Unsupported ABI $(TARGET_ARCH_ABI)")
+endif
+
+--
 # gstreamer_android.c:
 # redirects GStreamer logs to logcat and adds an entry
 # point to initialize GStreamer and register static plugins
 
+• Generate gstreamer_android.c
+
+• Get the link deps based on the input plugins
+
+• Compile gstreamer_android.c
+
+• Link libgstreamer_android.so with
+   gstreamer_android.o and the deps
+
+• Copies fonts config and glue code in Java
+
+--[img/build_steps.png]
+
 # Libraries used from the C backend must be explicetly listed
 # to include the whole archive with --whole-archive, otherwise
 # the linker will not include the object files as no symbol
-# is used by the gstreamer plugins.)
+# is used by the gstreamer plugins.
 --
-
 • We use libtool libraries to resolve link deps
 
 # Requires a unix-like shell on windows
 • Libtool can't be used for portability issues
 
 # equivalent to libtool --comand=link -static-libtool-libs
-• A small libtool replacement in makefiles + sed
+• A small libtool replacement in GNU Makefile + sed
+
       • Portable (works on Windows too)
+
 # We can install the SDK everywhere as libtool is relocatable
       • Supports relocations of .la files
+
       • Much faster than libtool
 
 --
+<b>iOS</b>
 
-And some stats...
+# Static libraries built with -DPIC and -fPIC
+# Static linking inly includes oject libraries that
+# are actually used.
+• Static linking
 
-• 171 plugins (same as for other platforms)
-# A library with everything is very cool, but at which cost?
-# Most of the time we don't need all plugins
+# Easy to re-distribute and load in applications
+• iOS Framework to work with XCode
 
-# This is using the tutorial plugins' list
-• Size of libstreamer_android.so
-   • not stripped: 60 MB
-   • stripped: 15 MB
-   • not stripped without GStreamer debug: 55 MB
-   • stripped without GStreamer debug: 13 MB
+• Big archive with all the static libraries
 
+• Selection of plugins with #ifdef's registering static plugins
+
+• The strip step takes cares of removing the extra archives
+   and symbols that are not used by the application
+
+--[shading-opacity=0.9000000][no-markup][text-color=white][font=Monospace 60px]
+(gst_ios_init.h)
+
+\#define GST_IOS_PLUGINS_CORE
+//#define GST_IOS_PLUGINS_CAPTURE
+//#define GST_IOS_PLUGINS_CODECS_RESTRICTED
+//#define GST_IOS_PLUGINS_ENCODING
+//#define GST_IOS_PLUGINS_DVD
+//#define GST_IOS_PLUGINS_CODECS_GPL
+//#define GST_IOS_PLUGINS_NET_RESTRICTED
+//#define GST_IOS_PLUGINS_SYS
+//#define GST_IOS_PLUGINS_VIS
+\#define GST_IOS_PLUGINS_PLAYBACK
+\#define GST_IOS_PLUGINS_EFFECTS
+\#define GST_IOS_PLUGINS_CODECS
+\#define GST_IOS_PLUGINS_NET
+
+--[shading-opacity=0.9000000][no-markup][text-color=white][font=Monospace 60px]
+\#include "gst_ios_init.h"
+
+\#if defined(GST_IOS_PLUGIN_COREELEMENTS) || defined(GST_IOS_PLUGINS_CORE)
+  GST_PLUGIN_STATIC_DECLARE(coreelements);
+\#endif
+
+void
+gst_ios_init (void)
+{
+  GstPluginFeature *plugin;
+  GstRegistry *reg;
+  NSString *resources = [[NSBundle mainBundle] resourcePath];
+  NSString *tmp = NSTemporaryDirectory();
+
+  const gchar *tmp_dir = [tmp UTF8String];
+  [...]
+  g_setenv ("TMP", tmp_dir, TRUE);
+  [...]
+
+  gst_init (NULL, NULL);
+  #if defined(GST_IOS_PLUGIN_COREELEMENTS) || defined(GST_IOS_PLUGINS_CORE)
+    GST_PLUGIN_STATIC_REGISTER(coreelements);
+  #endif
+
+  /* Lower the ranks of filesrc and giosrc so iosavassetsrc is
+   * tried first in gst_element_make_from_uri() for file:// */
+  reg = gst_registry_get_default();
+  plugin = gst_registry_lookup_feature(reg, "filesrc");
+  if (plugin)
+    gst_plugin_feature_set_rank(plugin, GST_RANK_SECONDARY);
+}
 
 --[font=Sans 60px]
-New plugins
-# New plugins developed for the SDK on Android
-# To use only public API, add missing features
---[font=Sans 60px]
-OpenGL ES / EGL Video Sink
---
-• OpenGL ES/EGL only public, native API
-   for video on Android
 
-# OpenGL not really made for video display but usable
-# Replacement for old surfaceflinger, non-public API
-• Supports hardware accelerated colorspace
-   conversion, scaling
-
-# YUV, RGB, shaders
-• Usable on all Android devices
-
-# Also other platforms with OpenGL ES/EGL
-# Available since Android Gingerbread (2.3)
-• Works like any other GStreamer video sink
-
-• Allows embedding into Android applications
-
-• Small and simple codebase
---[font=Sans 60px]
-OpenSL ES Audio Sink/Source
---
-• OpenSL ES only public native API for
-   audio on Android
-# Khronos standard (think: OpenGL, OpenMAX)
-# Replace old audioflinger based sink, non-public API
-• Very limited implementation available on Android
-# Very complex and powerful standard though, IMHO overengineered
-#   Mono, S16, 16kHz recording
-#   Mono/Stereo, U8/S16, up to 48kHz playback
-#   No device selection or any other more advanced features
-• Usable on all Android devices
-# Available since Android Gingerbread (2.3)
-• Uses Android-specific API extensions
-# Minimal changes required to work on other platforms
-• Could support compressed formats later
---[font=Sans 60px]
-android.media.MediaCodec Wrapper
---
-• Be able to use device's codecs
-# Hardware acceleration, no worries about patent licenses
-• Uses Java API via JNI
-# OpenMAX AL another option, very limited on Android
-#   only MPEGTS decoding
-# Very simple and powerful API
-• Java/JNI not performance problem
-# Very few method calls per frame
-# MediaCodec only small JNI wrapper around stagefright (C++)
-• Usable on all Android devices
-# Available since Android Jelly Bean (4.1)
---
-• Implemented: audio/video decoders
-
-# Hardware and software codecs
-# Tested so far on TI Ducati and NVidia Tegra3
-• Encoders easy to add if necessary
-
-• 1080p h264 easily possible, impossible in software
-
-• Supported video codecs:
-   h264/AVC, MPEG4, h263, MPEG2 and VP8
-
-• Supported audio codecs:
-   AAC, MP3, AMR-NB/WB, A-Law, µ-Law,
-   Vorbis and FLAC
---[font=Sans 60px]
-
-Developing applications with the SDK
+5. Installing GStreamer and creating your first application
 
 --
+<b> Android </b>
 
-• GStreamer projects can be built using
-   the regular tools
+• Distributed with a tarball
 
-• For Eclipse: using the wizard and
-   project→Android Tools→Add Native Support
+• Includes:
+  • Headers
+  • Static libraries (.a)
+  • Libtool librarires (.la)
+  • NDK integration makefiles
 
-• Command line: using the standard Ant
-   build command
+• Only requires to extract the tarball
 
-• jni/Android.mk must be updated for GStreamer
+• Create a project in Eclipse and add native support
+  project→Android Tools→Add Native Support
 
+• Finally edit your Android.mk with the path to the root
 
---[shading-opacity=0.5000000][no-markup][text-color=black][font=Monospace 60px]
-
+# honestly I think th eintegration with JNI can be trikcy
+# we need  proper bindings!
+--[shading-opacity=0.9000000][no-markup][text-color=white][font=Monospace 60px]
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -403,90 +716,30 @@ include $(CLEAR_VARS)
 
 include $(GSTREAMER_NDK_BUILD_PATH)/plugins.mk
 
-GSTREAMER_SDK_ROOT := /home/cerbero/android_arm
+GSTREAMER_ROOT := /home/cerbero/android_arm
 GSTREAMER_PLUGINS =  $(GSTREAMER_PLUGINS_CORE)\
                      $(GSTREAMER_PLUGINS_CODECS)
+GSTREAMER_EXTRA_DEPS := json-glib-1.0
 
 include $(GSTREAMER_NDK_BUILD_PATH)/gstreamer.mk
 
 --
 
-• No Java bindings yet
+<b>iOS</b>
 
-• Multimedia backend is written in C
+• Distributed as DMG image file
 
-• Bind the backend API to use it in the application
-   through JNI
+• Contains a .pkg to install the framework
+   and a folder with the tutorials
 
---
+• The .pkg installs the Framework and the XCode templates
 
-• Bind backend registering dynamic methods
-   with RegisterNatives
-
-• Declare this new methods as dynamic in
-   the Java side
-
---[shading-opacity=0.5000000][no-markup][text-color=black][font=Monospace 20px]
-
-/* List of implemented native methods */
-static JNINativeMethod native_methods[] = {
-  { "nativeInit", "()V", (void *) gst_native_init},
-  { "nativeFinalize", "()V", (void *) gst_native_finalize},
-  { "nativePlay", "()V", (void *) gst_native_play},
-  { "nativePause", "()V", (void *) gst_native_pause},
-  { "nativeClassInit", "()Z", (void *) gst_native_class_init}
-};
- 
-/* Library initializer */
-jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-  JNIEnv *env = NULL;
- 
-  java_vm = vm;
- 
-  if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_1_4) != JNI_OK) {
-    __android_log_print (ANDROID_LOG_ERROR, "tutorial-2", "Could not retrieve JNIEnv");
-    return 0;
-  }
-  jclass klass = (*env)->FindClass (env, "com/gst_sdk_tutorials/tutorial_2/Tutorial2");
-  (*env)->RegisterNatives (env, klass, native_methods, G_N_ELEMENTS(native_methods));
- 
-  pthread_key_create (&current_jni_env, detach_current_thread);
- 
-  return JNI_VERSION_1_4;
-}
-
---
-
-• Glib's main loop is run in a separate thread
-
-# Help with threads that are not called form Java
-• Use Thread-Local Storage (TLS) for storing
-   the JNI env
-
-• Load  libgstreamer_android.so in the application
-
---
-
-• 5 tutorials specific for Android:
-   • Linking against GStreamer
-   • A running pipeline
-   • Video
-   • A basic media player
-   • A complete media player
-
-• 25 other tutorials for introducing developers
-   into GStreamer development.
-
---
-
-GStreamer SDK
-
-http://www.gstreamer.com
-
-Documentation and tutorials
-
-http://www.docs.gstreamer.com
-
+--[img/1.png]
+--[img/2.png]
+--[img/3.png]
+--[img/4.png]
+--[img/5.png]
+--[img/6.png]
 
 --[img/final_bg.jpg]
 

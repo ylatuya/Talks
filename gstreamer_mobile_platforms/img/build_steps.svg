@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg13740"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="build_steps.svg"
+   inkscape:export-filename="/home/andoni/git/talk/img/build_steps.png"
+   inkscape:export-xdpi="142.66309"
+   inkscape:export-ydpi="142.66309">
+  <defs
+     id="defs13742">
+    <marker
+       inkscape:stockid="Arrow2Mendq"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mendq"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5832"
+         style="font-size:12px;fill:#204a87;fill-rule:evenodd;stroke:#204a87;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mendq"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker13699"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path13701"
+         style="font-size:12px;fill:#204a87;fill-rule:evenodd;stroke:#204a87;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="78.458347"
+     inkscape:cy="685.47564"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1600"
+     inkscape:window-height="844"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata13745">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.05815029px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 2.4895871,271.81999 500.6588629,-0.058"
+       id="path14105"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <text
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       id="text9998"
+       y="238.00714"
+       x="155.13826"
+       style="font-size:26.13909531px;font-style:normal;font-weight:bold;opacity:0.6;fill:#f57900;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans Bold"
+       xml:space="preserve"
+       transform="scale(1.0431795,0.95860779)"><tspan
+         id="tspan10058"
+         y="238.00714"
+         x="155.13826"
+         sodipodi:role="line">ndk-build build steps</tspan></text>
+    <rect
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       ry="3.5809264"
+       rx="6.5601754"
+       y="245.80072"
+       x="30.642899"
+       height="55.980076"
+       width="102.55421"
+       id="rect10266-3"
+       style="fill:#729fcf;fill-opacity:1;fill-rule:nonzero;stroke:#204a87;stroke-width:1.77951622;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.28930069" />
+    <rect
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       ry="3.5809264"
+       rx="6.5601754"
+       y="245.80072"
+       x="148.11064"
+       height="55.980076"
+       width="102.55421"
+       id="rect10266-3-8"
+       style="fill:#729fcf;fill-opacity:1;fill-rule:nonzero;stroke:#204a87;stroke-width:1.77951622;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.28930069" />
+    <rect
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       ry="3.5809264"
+       rx="6.5601754"
+       y="245.80072"
+       x="266.06982"
+       height="55.980076"
+       width="102.55421"
+       id="rect10266-3-9"
+       style="fill:#729fcf;fill-opacity:1;fill-rule:nonzero;stroke:#204a87;stroke-width:1.77951622;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.28930069" />
+    <rect
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       ry="3.5809264"
+       rx="6.5601754"
+       y="245.08644"
+       x="383.72287"
+       height="55.980076"
+       width="102.55421"
+       id="rect10266-3-0"
+       style="fill:#729fcf;fill-opacity:1;fill-rule:nonzero;stroke:#204a87;stroke-width:1.77951622;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.28930069" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot14081"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion14083"><rect
+           id="rect14085"
+           width="592.14288"
+           height="122.85714"
+           x="15"
+           y="217.36218" /></flowRegion><flowPara
+         id="flowPara14087" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot14089"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion14091"><rect
+           id="rect14093"
+           width="638.57141"
+           height="147.14285"
+           x="8.5714283"
+           y="207.36218" /></flowRegion><flowPara
+         id="flowPara14095" /></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79388732px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 9.285864,271.6479 -1.5e-4,97.68986"
+       id="path14109"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.91750252px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 8.6488855,369.31998 376.4105245,-0.058"
+       id="path14105-6"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <rect
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       ry="3.5809264"
+       rx="6.5601754"
+       y="341.51501"
+       x="30.642899"
+       height="55.980076"
+       width="102.55421"
+       id="rect10266-3-7"
+       style="fill:#ffb380;fill-opacity:1;fill-rule:nonzero;stroke:#ef833e;stroke-width:1.77951622;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.28930069" />
+    <text
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       id="text12231-3-1"
+       y="383.56876"
+       x="31.971849"
+       style="font-size:20.3304081px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(1.0431795,0.95860779)"><tspan
+         y="383.56876"
+         x="31.971849"
+         id="tspan12233-0-0"
+         sodipodi:role="line"
+         style="font-size:18px">    Gen</tspan><tspan
+         y="397.09802"
+         x="31.971849"
+         sodipodi:role="line"
+         id="tspan14075-2"
+         style="font-size:9px">gstreamer_android.c</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.90778363px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 16.697506,325.24832 368.478264,-0.058"
+       id="path14105-2"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <rect
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       ry="3.5809264"
+       rx="6.5601754"
+       y="341.51501"
+       x="148.11064"
+       height="55.980076"
+       width="102.55421"
+       id="rect10266-3-7-3"
+       style="fill:#ffb380;fill-opacity:1;fill-rule:nonzero;stroke:#ef833e;stroke-width:1.77951622;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.28930069" />
+    <rect
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       ry="3.5809264"
+       rx="6.5601754"
+       y="341.51501"
+       x="266.06982"
+       height="55.980076"
+       width="102.55421"
+       id="rect10266-3-7-0"
+       style="fill:#ffb380;fill-opacity:1;fill-rule:nonzero;stroke:#ef833e;stroke-width:1.77951622;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.28930069" />
+    <text
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       id="text12231-3-1-4"
+       y="384.47208"
+       x="145.245"
+       style="font-size:20.3304081px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(1.0431795,0.95860779)"><tspan
+         y="384.47208"
+         x="145.245"
+         id="tspan12233-0-0-1"
+         sodipodi:role="line"
+         style="font-size:18px">  Compile</tspan><tspan
+         y="398.00134"
+         x="145.245"
+         sodipodi:role="line"
+         id="tspan14075-2-9"
+         style="font-size:9px">gstreamer_android.c</tspan></text>
+    <text
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       id="text12231-3-1-4-7"
+       y="382.98181"
+       x="256.16959"
+       style="font-size:20.3304081px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(1.0431795,0.95860779)"><tspan
+         y="382.98181"
+         x="256.16959"
+         id="tspan12233-0-0-1-5"
+         sodipodi:role="line"
+         style="font-size:18px">     Link</tspan><tspan
+         y="395.51431"
+         x="256.16959"
+         sodipodi:role="line"
+         id="tspan14075-2-9-5"
+         style="font-size:8px">libgstreamer_android.so</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.58931142px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 17.142932,272.76151 -1.5e-4,53.82964"
+       id="path14109-3"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5269075px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 385.00008,325.47701 -1.5e-4,43.0329"
+       id="path14109-3-6"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <text
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       id="text12231-3-1-8"
+       y="283.06195"
+       x="30.460352"
+       style="font-size:20.3304081px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(1.0431795,0.95860779)"><tspan
+         y="283.06195"
+         x="30.460352"
+         id="tspan12233-0-0-9"
+         sodipodi:role="line"
+         style="font-size:18px">    Copy</tspan><tspan
+         y="295.59445"
+         x="30.460352"
+         sodipodi:role="line"
+         id="tspan14075-2-3"
+         style="font-size:8px">libgstreamer_android.so</tspan></text>
+    <text
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       id="text12231-3-1-9"
+       y="282.60388"
+       x="259.15677"
+       style="font-size:20.3304081px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(1.0431795,0.95860779)"><tspan
+         y="282.60388"
+         x="259.15677"
+         id="tspan12233-0-0-7"
+         sodipodi:role="line"
+         style="font-size:18px">    Build</tspan><tspan
+         y="296.13315"
+         x="259.15677"
+         sodipodi:role="line"
+         id="tspan14075-2-6"
+         style="font-size:9px">     app_backend.c</tspan></text>
+    <text
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       id="text12231-3-1-3"
+       y="282.72913"
+       x="372.82028"
+       style="font-size:20.3304081px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(1.0431795,0.95860779)"><tspan
+         y="282.72913"
+         x="372.82028"
+         id="tspan12233-0-0-8"
+         sodipodi:role="line"
+         style="font-size:18px">    Link</tspan><tspan
+         y="296.25836"
+         x="372.82028"
+         sodipodi:role="line"
+         id="tspan14075-2-5"
+         style="font-size:9px">        libapp.so</tspan></text>
+    <text
+       inkscape:export-ydpi="93.018272"
+       inkscape:export-xdpi="93.018272"
+       inkscape:export-filename="/home/andoni/git/talk/img/app.png"
+       id="text12231-3-1-8-7"
+       y="283.22015"
+       x="143.50867"
+       style="font-size:20.3304081px;font-style:normal;font-weight:normal;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(1.0431795,0.95860779)"><tspan
+         y="283.22015"
+         x="143.50867"
+         id="tspan12233-0-0-9-7"
+         sodipodi:role="line"
+         style="font-size:18px">   Install</tspan><tspan
+         y="295.75266"
+         x="143.50867"
+         sodipodi:role="line"
+         id="tspan14075-2-3-5"
+         style="font-size:8px">libgstreamer_android.so</tspan></text>
+  </g>
+</svg>
